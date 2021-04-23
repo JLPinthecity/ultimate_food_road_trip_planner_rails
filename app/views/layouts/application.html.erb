@@ -11,6 +11,27 @@
   </head>
 
   <body>
-    <%= yield %>
+
+  <header class="navbar  navbar-inverse">
+    <div class="navbar-class">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">HOME</a></li>
+          <li><%=link_to "ABOUT", about_path %></li>
+          <li><%=link_to "SIGNUP", about_path %></li>
+          <li><%=link_to "LOGIN", about_path %></li>
+          <li><%=link_to "LOGOUT", about_path %></li>
+        </ul>
+   
+      <div class="wrapper">
+        <h1 class="site-header__logo">
+       <%= image_tag ("/images/spoonfork.jpg") %>
+        </h1>
+      </div>
+    </header>
+
+      <div class='content'>
+        <%= yield %>
+      </div>
   </body>
 </html>

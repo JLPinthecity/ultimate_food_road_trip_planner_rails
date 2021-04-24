@@ -23,9 +23,13 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'pry'
+
 gem 'omniauth'
+
 gem 'omniauth-facebook'
+
 gem 'dotenv-rails'
+
 gem 'nokogiri'
 
 

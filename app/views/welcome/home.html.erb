@@ -1,1 +1,7 @@
 WELCOME TO A DAY AWAY
+
+<% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= link_to('Log in with Facebook!', '/auth/facebook', method: :post) %>

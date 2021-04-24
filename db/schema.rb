@@ -45,8 +45,6 @@ ActiveRecord::Schema.define(version: 2021_04_23_235635) do
   create_table "trips", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.date "start_date"
-    t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

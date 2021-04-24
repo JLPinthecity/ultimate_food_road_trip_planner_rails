@@ -5,7 +5,7 @@ require 'pry'
 class Scraper 
 
   def scrape_road_foods   
-    roadfood_url = "https://roadfood.com/guides"
+    roadfood_url = "https://roadfood.com/guides/page/3/"
     html = open(roadfood_url)
     doc = Nokogiri::HTML(html)
     guides = doc.css(".guides.rf-grid-list").css("li")
@@ -22,39 +22,41 @@ class Scraper
        url = guide_url
        html = open(url)
        doc = Nokogiri::HTML(html)
-       trip_title = doc.css("title").text
-       destinations = doc.css(".restaurant.hbox")
-       description = doc.css('p')[2].text
 
-       create_trips(trip_title, destinations, description)
+       guide_title = doc.css(".entry-header").css("h1").text
+       description = doc.css("p")[2].text
+       eateries = doc.css(".restaurant.hbox")
+
+       create_trips(guide_title, description, eateries)
+      
     end
   end
 
-  def create_trips(trip_title, destinations, description)
+  def create_trips(guide_title, description, eateries)
     trips = []
-
-    eateries = []
-    destinations.each do |destination|
-        city_state = destination.css(".rf-restaurant-location.vbox-item").text.gsub("\n", " ").gsub("\t", " ").gsub(/\s+/, "")
-        restaurant_name = destination.css(".entry-title").css("a").text
-        food_categories = destination.css(".rf-food-categories").css("a").text.split(/(?<=\p{Ll})(?=\p{Lu})|(?<=\p{Lu})(?=\p{Lu}\p{Ll})/)
-        dishes = destination.css(".rf_dish_list").text.gsub("\n", " ").gsub("\t", " ").strip
-        about = destination.css(".rf-restaurant-preview").css("p").text
+    eateries.each do |eatery|
     
-     
-
+        city_state = eatery.css(".rf-restaurant-location.vbox-item").text.gsub("\n", " ").gsub("\t", " ").gsub(/\s+/, "")
+        city = city_state.split(",")[0]
+        state = city_state.split(",")[1]
+        restaurant_name = eatery.css(".entry-title").css("a").text
+        food_categories = eatery.css(".rf-food-categories").css("a").text.split(/(?<=\p{Ll})(?=\p{Lu})|(?<=\p{Lu})(?=\p{Lu}\p{Ll})/)
+        dishes = eatery.css(".rf_dish_list").text.gsub("\n", " ").gsub("\t", " ").gsub!(/ +?,/, ',').gsub(/\s+/, ' ')
+        about = eatery.css(".rf-restaurant-preview").css("p").text
+    
         trip = {
-            :title => city_state,
+            :title => guide_title,
             :description => description,
-            :destinations => { 
+            :destination => { 
                 :city => city_state.split(",")[0],
                 :state => city_state.split(",")[1],
         }
     }
 
-        trip[:destinations][:eateries] = make_eateries(restaurant_name, food_categories, dishes, about)
+        trip[:destination][:eateries] = make_eateries(restaurant_name, food_categories, dishes, about)
 
         trips << trip
+    
     end
     binding.pry
   end

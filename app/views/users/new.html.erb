@@ -1,5 +1,9 @@
 <h1>Please Sign Up for an Account</h1>
 
+  <% if flash[:notice] %>
+    <div class="notice"><%= flash[:notice] %></div>
+  <% end %>
+
 <%= form_for @user, url: signup_path do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br />

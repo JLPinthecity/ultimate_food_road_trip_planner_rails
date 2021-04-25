@@ -1,14 +1,17 @@
 class User < ApplicationRecord
   has_many :trip_users
   has_many :trips, through: :trip_users
-  validates :name, :presence => true, :message => "Please include your name."
-  validates :email, :presence => true, :message => "Please enter your email."
-  validates :email, :uniqueness => true, :message => "Email already exists."
+  
+  validates :name, :presence => true
+  validates :email, :presence => true
+  validates :email, :uniqueness => true
+
+  has_secure_password
 
   def new
   end 
 
   def create 
   end
-  
+
 end

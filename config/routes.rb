@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' => 'sessions#create'
   get '/signup' => 'users#new'
 
+  resources :users, only: [:new, :create]
+
   resources :trips 
 end

@@ -7,22 +7,14 @@ class Trip < ApplicationRecord
 
     def self.create_from_collection(trips)
         trips.each do |trip_hash|
-            
-          trip = Trip.create
-          trip.title = trip_hash[:title]
-          trip.description = trip_hash[:description]
+          trip = Trip.create(:title => trip_hash[:title], :description => trip_hash[:description])
 
-          trip_hash[:destinations].each do |destination|
-            a = trip.destinations.create(:city => destination[:city], :state => destination[:state])
-
-            e = Eatery.new(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
-                              :about => destination[:eateries][:about], :dishes => destination[:eateries][:dishes])
-            
-
-            binding.pry
-          
-          end
-                               
+            trip_hash[:destinations].each do |destination|
+              a = trip.destinations.create(:city => destination[:city], :state => destination[:state])
+   
+              a.eateries.create(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
+                :about => destination[:eateries][:about], :dishes => destination[:eateries][:dishes])    
+            end                            
         end
     end
 end

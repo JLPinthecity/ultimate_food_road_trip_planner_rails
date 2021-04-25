@@ -7,13 +7,15 @@ class SessionsController < ApplicationController
     def create
       if params[:email].present? && params[:password].present? 
         user = User.find_by(:email => params[:email])
-        if user && user.authenticate(params[:password)]
+        if user && user.authenticate(params[:password])
+          
             login(user)
+           
             redirect_to root_path
             flash[:notice] = "Successfully logged in."
         else
-            flash.now[:notice] = "Email or password not a match."
-            render :new
+            redirect_to login_path
+            flash[:notice] = "Email and/or password were not a match."
         end
       else
         #log in with FB

@@ -16,17 +16,12 @@ class User < ApplicationRecord
     find_by(:uid => auth[:uid], :provider => auth[:provider])
   end
 
-
-    
-
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
-      u.name = auth['info']['name']
-      u.email = auth['info']['email']
-      u.image = auth['info']['image']
+  def self.create_from_omniauth(auth)
+    create(:uid => auth['uid'], 
+           :name => auth['info']['name'],
+           :email => auth['info']['email'],
+           :image => auth['info']['image'], 
+           :password => SecureRandom.hex(10))
   end
-  session[:user_id] = @user.id
-  redirect_to root_path
-  flash[:notice] = "You have successfully logged in."
-
 
 end

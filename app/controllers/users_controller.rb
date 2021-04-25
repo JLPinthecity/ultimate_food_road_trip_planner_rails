@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
 
-
   def new
     @user = User.new
   end 
@@ -11,16 +10,13 @@ class UsersController < ApplicationController
       @user.save
       login(@user)
       redirect_to root_path
-      flash[:notice] = "Successfully logged in."
+      flash[:notice] = "Account successfully created."
     else
       render :new
       flash[:notice] = "Please try again."
     end
-      
-       
-   
-
   end
+  
 
   private 
 

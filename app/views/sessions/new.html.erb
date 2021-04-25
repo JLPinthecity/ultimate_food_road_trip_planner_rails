@@ -1,3 +1,4 @@
+
 <header id ="header">
   <h1>Please log in below.</h1>
 
@@ -19,3 +20,11 @@
 <%= link_to('Log in with Facebook', '/auth/facebook', method: :post) %>
 
 </footer>
+
+<br>
+<br>
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+

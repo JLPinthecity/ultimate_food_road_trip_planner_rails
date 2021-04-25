@@ -1,19 +1,32 @@
-<h1>Please Sign Up for an Account</h1>
+<header>
+  <h1>Please Sign Up for an Account</h1>
 
   <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
 
-<%= form_for @user, url: signup_path do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br />
+    <%= form_for @user, url: signup_path do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %><br />
+      <%= f.label :email %>
+      <%= f.text_field :email %><br />
 
-  <%= f.label :email %>
-  <%= f.text_field :email %><br />
+      <%= f.label :password %>
+      <%= f.password_field :password %><br />
+      <br />
+      <%= f.submit "Create account" %>
+    <% end %>
+</header >
 
-  <%= f.label :password %>
-  <%= f.password_field :password %><br />
-  <br />
+<footer id="footer">
 
-  <%= f.submit "Create account" %>
+  <%= link_to('Sign in with Facebook', '/auth/facebook', method: :post) %>
+
+</footer>
+
+<br>
+<br>
+
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
 <% end %>

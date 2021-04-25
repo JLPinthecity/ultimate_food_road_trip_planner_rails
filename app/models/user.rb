@@ -13,7 +13,7 @@ class User < ApplicationRecord
   end
 
   def self.find_from_omniauth(auth)
-    find_by(:uid => auth[:uid], :provider => auth[:provider])
+    find_by(:uid => auth[:uid])
   end
 
   def self.create_from_omniauth(auth)

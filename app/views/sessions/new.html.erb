@@ -1,5 +1,21 @@
-<h1>A Day Away Login Page</h1>
+<header id ="header">
+  <h1>Please log in below.</h1>
 
-<%= form_tag(sessions_path) do %>
+  <%= form_tag(sessions_path) do %>
+    <input type="text" id="login" name="email" placeholder="Enter your email." />
 
+    <input type="password" id="login" name="password" placeholder="Enter your password.">
 
+    <%= submit_tag "Log In" %>
+  <% end %>
+
+<br />
+<br />
+
+</header >
+
+<footer id="footer">
+
+<%= link_to('Log in with Facebook', '/auth/facebook', method: :post) %>
+
+</footer>

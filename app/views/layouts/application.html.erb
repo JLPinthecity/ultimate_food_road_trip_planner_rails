@@ -16,10 +16,10 @@
     <div class="navbar-class">
       <div class="container">
         <ul class="navbar">
-          <li class="link"><a href="#">HOME</a></li>
+          <li><%=link_to "HOME", root_path %></li>
           <li><%=link_to "ABOUT", about_path %></li>
-          <li class="signup"><a href="/users/new">SIGNUP</a></li>
-          <li><%=link_to "ABOUT", about_path %></li>
+          <li><%=link_to "LOG IN", login_path %></li>
+             <li><%=link_to "LOG OUT", logout_path %></li>
           
         </ul>
    

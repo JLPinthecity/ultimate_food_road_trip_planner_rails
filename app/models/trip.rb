@@ -5,6 +5,9 @@ class Trip < ApplicationRecord
     has_many :trip_users,  dependent: :destroy
     has_many :users, through: :trip_users  
 
+    validates :title, :presence => true
+    validates :description, :presence => true
+
     def self.create_from_collection(trips)
         trips.each do |trip_hash|
           trip = Trip.create(:title => trip_hash[:title], :description => trip_hash[:description])

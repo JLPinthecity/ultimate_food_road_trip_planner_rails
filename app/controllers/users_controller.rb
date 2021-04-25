@@ -1,8 +1,3 @@
 class UsersController < ApplicationController
 
-    
-
-
-
-
 end

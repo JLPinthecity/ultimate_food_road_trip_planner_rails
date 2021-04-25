@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   root 'welcome#home'
   get '/about', to: 'welcome#about'
+ 
   get '/auth/facebook/callback' => 'sessions#create'
-  get '/signup' => 'users#new'
-
-  resources :users, only: [:new, :create]
+  get '/login' => 'sessions#new'
+  post '/sessions' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
   resources :trips 
 end

@@ -15,6 +15,9 @@ class SessionsController < ApplicationController
         flash[:notice] = "You have successfully logged in."
     end
 
+    def destroy
+    end
+
     private 
 
     def auth

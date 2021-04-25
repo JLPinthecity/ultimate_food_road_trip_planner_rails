@@ -5,14 +5,23 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_or_create_by(uid: auth['uid']) do |u|
-          u.name = auth['info']['name']
-          u.email = auth['info']['email']
-          u.image = auth['info']['image']
+      if params[:email].present? && params[:password].present? 
+        user = User.find_by(:email => params[:email])
+        if user && user.authenticate(params[:password)]
+            login(user)
+            redirect_to root_path
+            flash[:notice] = "Successfully logged in."
+        else
+            flash.now[:notice] = "Email or password not a match."
+            render :new
         end
-        session[:user_id] = @user.id
+      else
+        #log in with FB
+        auth.present?
+        user = User.login_from_omniauth(auth)
+        login(user)
         redirect_to root_path
-        flash[:notice] = "You have successfully logged in."
+      end
     end
 
     def destroy

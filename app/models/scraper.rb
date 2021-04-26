@@ -5,7 +5,6 @@ require 'pry'
 class Scraper 
 
   def scrape_road_foods   
-
     doc = Nokogiri::HTML(URI.open("https://roadfood.com/guides/"))
 
     guides = doc.css(".guides.rf-grid-list").css("li")
@@ -45,7 +44,7 @@ class Scraper
     trip[:destinations] = []
 
     eateries.each do |eatery|
-        boom = {}
+        dest = {}
         city_state = eatery.css(".rf-restaurant-location.vbox-item").text.gsub("\n", " ").gsub("\t", " ").split(",")
         city = city_state[0].to_s.strip
         state = city_state[1].to_s.strip.capitalize
@@ -53,9 +52,9 @@ class Scraper
         food_categories = eatery.css(".rf-food-categories").css("a").text.split(/(?<=\p{Ll})(?=\p{Lu})|(?<=\p{Lu})(?=\p{Lu}\p{Ll})/)
         dishes = eatery.css(".rf_dish_list").text.gsub("\n", " ").gsub("\t", " ").gsub(/ +?,/, ',').gsub(/\s+/, ' ')
         about = eatery.css(".rf-restaurant-preview").css("p").text
-        boom[:city] = city
-        boom[:state] = state
-        boom[:eateries] = {
+        dest[:city] = city
+        dest[:state] = state
+        dest[:eateries] = {
             :name => restaurant_name,
             :about => about,
             :food_categories => food_categories,
@@ -68,9 +67,6 @@ class Scraper
   end
 
 end
-
-scrape = Scraper.new
-scrape.scrape_road_foods
 
 
 

@@ -14,9 +14,11 @@ class Trip < ApplicationRecord
 
             trip_hash[:destinations].each do |destination|
               a = trip.destinations.create(:city => destination[:city], :state => destination[:state])
-   
-              a.eateries.create(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
-                :about => destination[:eateries][:about], :dishes => destination[:eateries][:dishes])    
+               
+              b = a.eateries.new(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
+                :about => destination[:eateries][:about], :dishes => destination[:eateries][:dishes]) 
+              b.save 
+                 
             end                            
         end
     end

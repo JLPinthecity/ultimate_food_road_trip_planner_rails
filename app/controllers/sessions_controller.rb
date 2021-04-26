@@ -18,11 +18,11 @@ class SessionsController < ApplicationController
             flash[:notice] = "Email and/or password were not a match."
         end
       else
-        #log in with FB
         auth.present?
         user = User.login_from_omniauth(auth)
         login(user)
         redirect_to root_path
+        flash[:notice] = "Successfully logged in with Facebook."
       end
     end
 

@@ -12,11 +12,10 @@ class UsersController < ApplicationController
       redirect_to root_path
       flash[:notice] = "Account successfully created."
     else
-      render :new
+      redirect_to signup_path
       flash[:notice] = "Please try again."
     end
   end
-  
 
   private 
 

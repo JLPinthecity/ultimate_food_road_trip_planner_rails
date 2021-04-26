@@ -4,6 +4,8 @@ class TripsController < ApplicationController
         @trip = Trip.new
     end
 
-
+    def index
+        @trips = Trip.all
+    end
 
 end

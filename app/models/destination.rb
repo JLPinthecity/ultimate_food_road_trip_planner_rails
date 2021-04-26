@@ -5,4 +5,6 @@ class Destination < ApplicationRecord
 
     validates :city, :presence => true
     validates :state, :presence => true
+
+    accepts_nested_attributes_for :eateries
 end

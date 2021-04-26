@@ -8,6 +8,8 @@ class Trip < ApplicationRecord
     validates :title, :presence => true
     validates :description, :presence => true
 
+    accepts_nested_attributes_for :destinations, :trip_users
+
     def self.create_from_collection(trips)
         trips.each do |trip_hash|
           trip = Trip.create(:title => trip_hash[:title], :description => trip_hash[:description])
@@ -18,7 +20,7 @@ class Trip < ApplicationRecord
               b = a.eateries.new(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
                 :about => destination[:eateries][:about], :dishes => destination[:eateries][:dishes]) 
               b.save 
-                 
+
             end                            
         end
     end

@@ -60,7 +60,7 @@ class Scraper
             :food_categories => food_categories,
             :dishes => dishes
         }
-        trip[:destinations] << boom
+        trip[:destinations] << dest
     end
     
     trip[:destinations] 

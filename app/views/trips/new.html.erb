@@ -1,29 +1,45 @@
 <h1>Create a new meal-driven road trip itinerary. Hurray! <h1>
 
-  <%= form_for @trip do |f| %>
+<br>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <body style="color: blue; font-size: 10px;">
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+  <%= form_with model: @trip do |trip_form| %>
 
-  
+  <%= trip_form.label :title %>
+  <%= trip_form.text_area :title, placeholder: "Something like: Brunch and Breweries in Savannah, Georgia" %>, size: <br />
 
+  <%= trip_form.label :description %>
+  <%= trip_form.text_area :description, placeholder: "Something like: Planning a weekend getaway for June 2021." %><br />
 
+  <%= trip_form.fields_for :destinations do |destination_form| %>
 
+    <%= destination_form.label :city %>
+    <%= destination_form.text_field :city, placeholder: "Savannah" %>
 
+    <%= destination_form.label :state %>
+    <%= destination_form.text_field :state, placeholder: "GA" %>
 
+      <%= destination_form.fields_for :eateries, Eatery.new do |eatery_form| %>
+    
+        <%= eatery_form.label :name %>
+        <%= eatery_form.text_field :name, placeholder: "Cotton & Rye" %>
+
+        <%= eatery_form.label :about %>
+        <%= eatery_form.text_field :about, placeholder: "Pro tip: Reserve a private dinner inside the original bank vault at Cotton & Rye." %>
+     
+        <%= eatery_form.label :food_categories %>
+        <%= eatery_form.text_field :food_categories, placeholder: "Southern food, dinner, dessert" %>
+
+        <%= eatery_form.label :name %>
+        <%= eatery_form.text_field :name, placeholder: "Crispy chicken wings, Peanut butter pie" %>
+      <% end %> 
+    <% end %> 
   <% end %>
 
-<>
-Create Itinerary 
-Choose your road
-Title of your road trip itinerary:           itinerary.name
-Approximate start date:    itinerary.start_date
-Approximate end date:     itinerary.end_date
-Destinations: Select from existing destinations or create new destination
-Destinations.all each do |destination|
-destiantion.location |DEFINED IN MODEL|
-itinerary.destination.build(DESTINATION ATTR) %>
+    <button class=“icon button” type=“submit”>
+      <i class="icon save"></i>&nbsp;Save
+    </button>
+
+
 

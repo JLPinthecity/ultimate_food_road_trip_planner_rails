@@ -1,15 +1,13 @@
 require 'pry'
 class TripsController < ApplicationController
-    before_action :verify_user, only: [:new, :edit, :update, :destroy]  
+    before_action :verify_user, only: [:destroy]  
 
     def new
-        if logged_in?
-            @trip = @user.trips.build
-            binding.pry
-        else
-            flash[:notice] = "You must be signed in to create an itinerary."
-            redirect_to signup_path
-        end
+      @user = current_user
+      @trip = @user.trips.build
+      @trip.destinations.build
+     
+     
     end
 
     def show

@@ -18,7 +18,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+
 
   <header class="navbar  navbar-inverse">
     <div class="navbar-class">
@@ -26,6 +26,7 @@
         <ul class="navbar">
           <li><%=link_to "HOME", root_path %></li>
           <li><%=link_to "ABOUT", about_path %></li>
+          <li><%=link_to "ITINERARIES", trips_path %></li>
             <% if current_user %>
               <li><%=link_to "LOG OUT", logout_path %></li>
             <% else %>
@@ -41,8 +42,16 @@
       </div>
     </header>
 
+
+
+    <center><%= image_tag ("nathan-dumlao-nCeR4kAcZ2c-unsplash.jpg"), size: "500x750" %></center>
+
       <div class='content'>
         <%= yield %>
       </div>
+  
+  
+  
+  
   </body>
 </html>

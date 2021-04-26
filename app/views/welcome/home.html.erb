@@ -4,5 +4,8 @@
 
 
 
-<center><footer style="font-size:50%;">
-</footer></center>
+<center><strong><footer style="font-size:80%;">
+<% if @user %>
+Currently logged in as <%= @user.name %>
+<% end %>
+</footer></strong</center>

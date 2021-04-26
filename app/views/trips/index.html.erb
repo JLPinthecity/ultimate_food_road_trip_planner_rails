@@ -1,8 +1,9 @@
+<% require 'pry'%>
 <h1>Trip Itineraries</h1>
 
 <% @trips.each do |trip| %>
 
-<p><%= link_to trip.title %></p> 
+<p><%= link_to trip.title, trip_path(trip) %></p> 
 
 <% end %>
 

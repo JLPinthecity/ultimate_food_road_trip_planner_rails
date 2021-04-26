@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_04_23_235635) do
   create_table "trip_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "trip_id"
+    t.boolean "admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

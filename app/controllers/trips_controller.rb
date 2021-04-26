@@ -6,8 +6,6 @@ class TripsController < ApplicationController
       @user = current_user
       @trip = @user.trips.build
       @trip.destinations.build
-     
-     
     end
 
     def show

@@ -26,10 +26,12 @@
         <ul class="navbar">
           <li><%=link_to "HOME", root_path %></li>
           <li><%=link_to "ABOUT", about_path %></li>
-          <li><%=link_to "SIGN UP", signup_path %></li>
-          <li><%=link_to "LOG IN", login_path %></li>
-             <li><%=link_to "LOG OUT", logout_path %></li>
-          
+            <% if current_user %>
+              <li><%=link_to "LOG OUT", logout_path %></li>
+            <% else %>
+              <li><%=link_to "SIGN UP", signup_path %></li>
+              <li><%=link_to "LOG IN", login_path %></li>
+            <% end %>
         </ul>
    
       <div class="wrapper">

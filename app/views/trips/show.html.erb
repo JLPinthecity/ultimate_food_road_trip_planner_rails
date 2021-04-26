@@ -1,8 +1,19 @@
+<% require 'pry' %>
 
+<body>
+  <h1><%= @trip.title %></h1>
 
+  <%= @trip.description %>
 
+  <% @trip.destinations.each do |destination| %>
+    <h2> <%= destination.location %> </h2>
 
-<h1>TRIP SHOW PAGE</h1>
+      <% destination.eateries.each do |eatery| %>
+        <p>Restaurant name: <%= eatery.name %></p>
+        <p>The low-down: <%= eatery.about %></p>
+        <p>Food categories: <%= eatery.food_categories %></p>
+        <p>Recommended dishes: <%=  eatery.dishes %></p>
+      <% end %>
+  <% end %>
 
-
-<%= @trip.title %>
+</body>

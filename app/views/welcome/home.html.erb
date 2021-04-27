@@ -1,10 +1,3 @@
 <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<br />
-<br />
-<center><strong><footer style="font-size:80%;">
-<% if @user %>
-Currently logged in as <%= @user.name %>.
-<% end %>
-</footer></strong</center>

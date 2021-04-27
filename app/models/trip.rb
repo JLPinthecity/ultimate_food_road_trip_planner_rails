@@ -31,8 +31,6 @@ end
 
 
 
-
-
     #   eateries_attributes = [
         #        {:city => "",
         #         :state => "",

@@ -1,6 +1,6 @@
 require 'pry'
 class TripsController < ApplicationController
-    before_action :verify_user, only: [:destroy]  
+    before_action :verify_user, only: [:new, :destroy]  
 
     def new
       @user = current_user
@@ -9,10 +9,10 @@ class TripsController < ApplicationController
     end
 
     def create
-      raise params.inspect   #need to update strong params
-
+        #need to update strong params
         @trip = Trip.new(trip_params)
         if @trip.save
+          binding.pry
           redirect to trip_path(@trip) #trips/#trip.id
         else
           render :new
@@ -36,7 +36,7 @@ class TripsController < ApplicationController
     private 
 
     def trip_params 
-        params.require(:trip).permit(:title, :description, )
+        params.require(:trip).permit(:title, :description, :eateries_attributes => [:city, :state, :name, :about, :food_categories, :dishes])
     end
 
 

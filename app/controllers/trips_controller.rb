@@ -10,9 +10,10 @@ class TripsController < ApplicationController
 
     def create
       raise params.inspect   #need to update strong params
+
         @trip = Trip.new(trip_params)
         if @trip.save
-          redirect to @trip
+          redirect to trip_path(@trip) #trips/#trip.id
         else
           render :new
         end
@@ -35,7 +36,7 @@ class TripsController < ApplicationController
     private 
 
     def trip_params 
-        params.require(:trip).permit(:title, :description)
+        params.require(:trip).permit(:title, :description, )
     end
 
 

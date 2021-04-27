@@ -7,36 +7,36 @@
   <%= form_for(@trip) do |trip_form| %>
 
   <%= trip_form.label :title %>
-  <%= trip_form.text_area :title, placeholder: "Something like: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />
+  <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />
 
   <%= trip_form.label :description %>
-  <%= trip_form.text_area :description, placeholder: "Something like: Planning a weekend getaway for June 2021.", size: "50%" %><br /><br />
+  <%= trip_form.text_area :description, placeholder: "Ex: Something like: Planning a weekend getaway for June 2021.", size: "50%" %><br /><br />
 
-  <%= trip_form.fields_for :eateries do |eatery_form| %> 
+    <%= trip_form.fields_for :eateries do |eatery_form| %> 
 
-    <%= destination_form.label :city %>
-    <%= destination_form.text_field :city, placeholder: "Savannah" %><br /><br />
+    <%= eatery_form.label :city %>
+    <%= eatery_form.text_field :city, placeholder: "Ex: Savannah" %><br /><br />
 
-    <%= destination_form.label :state %>
-    <%= destination_form.text_field :state, placeholder: "GA" %><br /><br />
+    <%= eatery_form.label :state %>
+    <%= eatery_form.text_field :state, placeholder: "Ex: GA" %><br /><br />
 
-      <%= destination_form.fields_for :eateries, Eatery.new do |eatery_form| %>
-    
-        <%= eatery_form.label :name %>
-        <%= eatery_form.text_field :name, placeholder: "Cotton & Rye" %><br /><br />
+    <%= eatery_form.label :name %>
+    <%= eatery_form.text_field :name, placeholder: "Cotton & Rye" %><br /><br />
 
-        <%= eatery_form.label :about %>
-        <%= eatery_form.text_field :about, placeholder: "Pro tip: Book a private dinner inside the original bank vault at Cotton & Rye.", size: "50%" %><br /><br />
+    <%= eatery_form.label :about %>
+    <%= eatery_form.text_field :about, placeholder: "Pro tip: Book a private dinner inside the original bank vault at Cotton & Rye.", size: "50%" %><br /><br />
      
-        <%= eatery_form.label :food_categories %>
-        <%= eatery_form.text_field :food_categories, placeholder: "Southern food, dinner, dessert", size: "50%" %><br /><br />
+    <%= eatery_form.label :food_categories %>
+    <%= eatery_form.text_field :food_categories, placeholder: "Southern food, dinner, dessert", size: "50%" %><br /><br />
 
-        <%= eatery_form.label :dishes %>
-        <%= eatery_form.text_field :dishes, placeholder: "Crispy chicken wings, Peanut butter pie", size: "50%" %><br /><br />
-     <%= submit_tag Create Itinerary" %>
-      <% end %> 
+    <%= eatery_form.label :dishes %>
+    <%= eatery_form.text_field :dishes, placeholder: "Crispy chicken wings, Peanut butter pie", size: "50%" %><br /><br />
+    
+    <%= submit_tag "Create Itinerary" %>
+
     <% end %> 
-  <% end %>
+  <% end %> 
+
 
  
 

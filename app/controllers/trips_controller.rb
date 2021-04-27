@@ -5,7 +5,7 @@ class TripsController < ApplicationController
     def new
       @user = current_user
       @trip = @user.trips.build
-      @trip.destinations.build
+      @trip.eateries.build
     end
 
     def create

@@ -5,17 +5,12 @@
 
   <%= @trip.description %>
 
-  <% @trip.destinations.each do |destination| %>
-    <h2> <%= destination.location %> </h2>
-
-      <% destination.eateries.each do |eatery| %>
-     
-        <h3>Restaurant name: <%= eatery.name %></h3>
-        <p>About: <%= eatery.about %></p>
-        <p>Specialties: <%= eatery.food_categories %></p>
-        <p>Recommended dishes: <%=  eatery.dishes %></p>
-      
-      <% end %>
+  <% @trip.eateries.each do |eatery| %>
+    <h2>Restaurant name: <%= eatery.name %></h2>
+    <p>Location: <%= eatery.location %> 
+    <p>About: <%= eatery.about %></p>
+    <p>Specialties: <%= eatery.food_categories %></p>
+    <p>Recommended dishes: <%=  eatery.dishes %></p>
   <% end %>
 
 </body>

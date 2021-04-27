@@ -10,22 +10,12 @@ class Trip < ApplicationRecord
    
     def self.create_from_collection(trips) #for scraper
         trips.each do |trip_hash| 
-           
           trip = Trip.create(:title => trip_hash[:title], :description => trip_hash[:description])
 
             trip_hash[:eateries].each do |eatery|
-                trip.eateries.create(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
-                :about => destination[:eateries][:about], :dishes => destination[:eateries][:dishes]) 
-
-            end                            
+                a = trip.eateries.create(:name => eatery[:name], :city => eatery[:city], :state => eatery[:state], :food_categories => eatery[:food_categories],
+                                     :about => eatery[:about], :dishes => eatery[:dishes])
+            end         
         end
     end
-
-    # def destinations_attributes=(destinations_attributes)
-        # trip: {
-        #     destinations_attributes: {
-        #       city: '',
-        #       state: ''
-        #     }
-    # end
 end

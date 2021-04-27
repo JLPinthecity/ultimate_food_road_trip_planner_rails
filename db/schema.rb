@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_003411) do
   end
 
   create_table "eateries_trips", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "eatery_id"
     t.integer "trip_id"
     t.boolean "visited"
     t.datetime "created_at", precision: 6, null: false

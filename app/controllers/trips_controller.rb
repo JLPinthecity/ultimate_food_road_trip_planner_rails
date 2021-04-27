@@ -3,14 +3,13 @@ class TripsController < ApplicationController
     before_action :verify_user, only: [:new, :destroy]  
 
     def new
-      @user = current_user
-      @trip = @user.trips.build
+      @trip = Trip.new
       @trip.eateries.build
     end
-
+   
     def create
-        #need to update strong params
-        @trip = Trip.new(trip_params)
+        @user = current_user
+        @trip = @user.trips.build(trip_params)
         if @trip.save
           binding.pry
           redirect to trip_path(@trip) #trips/#trip.id

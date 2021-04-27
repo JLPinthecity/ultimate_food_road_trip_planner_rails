@@ -18,7 +18,7 @@ class Trip < ApplicationRecord
     end
 
     def eateries_attributes=(eateries_attributes)
-      eateries_attributes.each do |eatery_attributes|
+      eateries_attributes.values.each do |eatery_attributes|
         self.eateries.build(eatery_attributes)
       end
     end

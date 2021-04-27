@@ -4,15 +4,14 @@ class TripsController < ApplicationController
 
     def new
       @trip = Trip.new
-      @trip.eateries.build
+      5.times { @trip.eateries.build }
     end
    
     def create
         @user = current_user
         @trip = @user.trips.build(trip_params)
         if @trip.save
-          binding.pry
-          redirect to trip_path(@trip) #trips/#trip.id
+          redirect_to user_trip_path(@user, @trip) #/users/:user_id/trips/:id
         else
           render :new
         end
@@ -24,6 +23,9 @@ class TripsController < ApplicationController
 
     def index
         @trips = Trip.all
+    end
+
+    def edit
     end
 
     def update

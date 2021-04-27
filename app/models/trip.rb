@@ -5,8 +5,6 @@ class Trip < ApplicationRecord
 
     validates :title, :presence => true
     validates :description, :presence => true
-
-    accepts_nested_attributes_for :eateries
    
     def self.create_from_collection(trips) #for scraper
         trips.each do |trip_hash| 
@@ -18,4 +16,34 @@ class Trip < ApplicationRecord
             end         
         end
     end
+
+    def eateries_attributes=(eateries_attributes)
+      eateries_attributes.each do |eatery_attributes|
+        self.eateries.build(eatery_attributes)
+      end
+    end
 end
+
+
+
+
+
+
+
+
+
+
+    #   eateries_attributes = [
+        #        {:city => "",
+        #         :state => "",
+        #         :name => "",
+        #         :food_categories => "",
+        #         :dishes => ""
+        #       } 
+        #         {:city => "",
+        #         :state => "",
+        #         :name => "",
+        #         :food_categories => "",
+        #        :dishes => ""
+        #       } 
+        #     ]

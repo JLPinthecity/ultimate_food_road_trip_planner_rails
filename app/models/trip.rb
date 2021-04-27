@@ -7,8 +7,9 @@ class Trip < ApplicationRecord
     validates :description, :presence => true
    
     def self.create_from_collection(trips) #for scraper
-        trips.each do |trip_hash| 
-          trip = Trip.create(:title => trip_hash[:title], :description => trip_hash[:description])
+        u = User.find_by(:name => "Admin")
+        trips.each do |trip_hash|  
+          trip = u.trips.create(:title => trip_hash[:title], :description => trip_hash[:description])
 
             trip_hash[:eateries].each do |eatery|
                 a = trip.eateries.create(:name => eatery[:name], :city => eatery[:city], :state => eatery[:state], :food_categories => eatery[:food_categories],

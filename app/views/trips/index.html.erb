@@ -1,16 +1,17 @@
-<% require 'pry'%>
+<% require 'pry' %>
 <h1>Trip Itineraries</h1>
 
 <% @trips.each do |trip| %>
 
-<p><%= link_to trip.title, trip_path(trip) %></p> 
+<p><%= link_to trip.title, user_trip_path(trip.user_id, trip) %></p> 
+
 
 <% end %>
 
 <br />
 <br />
 
-<%= link_to "CREATE NEW ROAD TRIP ITINERARY", new_trip_path, {:style=>'color:#red;'}%>
+<%= link_to "CREATE NEW ROAD TRIP ITINERARY", new_user_trip_path(current_user) {:style=>'color:#red;'}%>
 
 <br />
 <br />

@@ -19,7 +19,8 @@ EateriesTrips also has a "visited" attribute boolean.
 - [X] Include logout
 - [X] Include third party signup/login (how e.g. Devise/OmniAuth)
 I used Omniauth Facebook.
-- [ ] Include nested resource show or index (URL e.g. users/2/recipes)
+- [X] Include nested resource show or index (URL e.g. users/2/recipes)
+"users/:id/trips/:id" in place
 - [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
 - [ ] Include form display of validation errors (form URL e.g. /recipes/new)
 

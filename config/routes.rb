@@ -12,10 +12,10 @@ Rails.application.routes.draw do
   post '/sessions' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
-  resources :trips 
+  resources :trips, only: [:index]
 
   resources :users do
-    resources :trips, only: [:show]
+    resources :trips, only: [:new, :create, :show, :edit, :update, :delete]
   end
 
 end

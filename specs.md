@@ -21,7 +21,8 @@ EateriesTrips also has a "visited" attribute boolean.
 I used Omniauth Facebook.
 - [X] Include nested resource show or index (URL e.g. users/2/recipes)
 "users/:id/trips/:id" in place
-- [ ] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
+- [X] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
+"users/:id/trips/new" in place
 - [ ] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:

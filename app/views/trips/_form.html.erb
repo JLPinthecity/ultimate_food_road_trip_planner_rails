@@ -1,4 +1,4 @@
-<%= form_for(@trip) do |trip_form| %>
+<%= form_for [@user, @trip] do |trip_form| %>
 
   <%= trip_form.label :itinerary_title %>
   <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />

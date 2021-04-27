@@ -15,4 +15,10 @@
 
 </body>
 
-<%= link_to "Edit Road Trip Itinerary", edit_user_trip_path(@trip) %>
+
+<% if current_user.id == @user.id %>
+
+    <%= link_to "Edit Food Road Trip Itinerary", edit_user_trip_path(@user, @trip) %><br><br>
+
+    <%= link_to "Delete Food Road Trip Itinerary", user_trip_path(@user, @trip), method: "delete" %>
+<% end %>

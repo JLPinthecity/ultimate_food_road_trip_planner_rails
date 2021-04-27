@@ -12,14 +12,15 @@ class TripsController < ApplicationController
       find_user_by_id
       @trip = @user.trips.new(trip_params)
       if @trip.save
-        redirect_to user_trips_path(@user, @trip)
+        redirect_to user_trip_path(@user, @trip)
       else
-        redirect_to new_user_trip_path(@user)
+        render :new
       end
     end
   
     def show
        find_trip_by_id
+       find_user_by_id
     end
 
     def index
@@ -31,7 +32,9 @@ class TripsController < ApplicationController
     end
 
     def edit
+      find_user_by_id
       find_trip_by_id
+
     end
 
     def update
@@ -48,7 +51,7 @@ class TripsController < ApplicationController
     end
 
     def find_trip_by_id
-      @trip = Trip.find_by(id: params[:id])
+      @trip = Trip.find(params[:id])
     end
 
     def find_user_by_id

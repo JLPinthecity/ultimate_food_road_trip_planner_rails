@@ -7,8 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Trip.destroy_all
-Destination.destroy_all
-Eatery.destroy_all
 
 scrape = Scraper.new
 trips = scrape.scrape_road_foods   

@@ -30,19 +30,16 @@ class Scraper
         :description => description,
     }
     
-    trip[:destinations] = create_eateries(trip, eateries)
-    
+    trip[:eateries] = create_eateries(trip, eateries)
     trips << trip 
     end
     trips
   end
 
   def create_eateries(trip, eateries)
-    # trip has multiple eateries
-    trip[:destinations] = []
-
+    eatery_array = []
     eateries.each do |eatery|
-        dest = {}
+        restaurant = {}
         city_state = eatery.css(".rf-restaurant-location.vbox-item").text.gsub("\n", " ").gsub("\t", " ").split(",")
         city = city_state[0].to_s.strip
         state = city_state[1].to_s.strip.upcase
@@ -50,22 +47,30 @@ class Scraper
         food_categories = eatery.css(".rf-food-categories").css("a").text.split(/(?<=\p{Ll})(?=\p{Lu})|(?<=\p{Lu})(?=\p{Lu}\p{Ll})/).join(", ")
         dishes = eatery.css(".rf_dish_list").text.gsub("\n", " ").gsub("\t", " ").gsub(/ +?,/, ',').gsub(/\s+/, ' ')
         about = eatery.css(".rf-restaurant-preview").css("p").text
-        dest[:city] = city
-        dest[:state] = state
-        dest[:eateries] = {
+        restaurant = {
+            :city => city,
+            :state => state,
             :name => restaurant_name,
             :about => about,
             :food_categories => food_categories,
-            :dishes => dishes
+            :dishes => dishes 
         }
-        trip[:destinations] << dest
+        eatery_array << restaurant
+        
     end
-    
-    trip[:destinations] 
+    return eatery_array
   end
-
 end
 
 
 
+#scrape = Scraper.new
+#scrape.scrape_road_foods
 
+
+
+#trips = [trip = {}, trip = {}, trip = {
+#title => title, 
+#description => description, 
+#eateries => [{eatery, eatery, eatery}]
+#}]

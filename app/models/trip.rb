@@ -9,15 +9,13 @@ class Trip < ApplicationRecord
     accepts_nested_attributes_for :eateries
    
     def self.create_from_collection(trips) #for scraper
-        trips.each do |trip_hash|
+        trips.each do |trip_hash| 
+           
           trip = Trip.create(:title => trip_hash[:title], :description => trip_hash[:description])
 
-            trip_hash[:destinations].each do |destination|
-              a = trip.destinations.where(:city => destination[:city]).first_or_create(:city => destination[:city], :state => destination[:state])
-               
-              b = a.eateries.new(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
+            trip_hash[:eateries].each do |eatery|
+                trip.eateries.create(:name => destination[:eateries][:name], :food_categories => destination[:eateries][:food_categories],
                 :about => destination[:eateries][:about], :dishes => destination[:eateries][:dishes]) 
-              b.save 
 
             end                            
         end

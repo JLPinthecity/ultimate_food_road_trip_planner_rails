@@ -2,45 +2,8 @@
 
 <br><br>
 
-  <body style="font-size: 16px;">
+<body style="font-size: 16px;">
 
-  <%= form_for(@trip) do |trip_form| %>
+<%= render partial: "form", locals: { trip: @trip } %>
 
-  <%= trip_form.label :itinerary_title %>
-  <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />
-
-  <%= trip_form.label :description %>
-  <%= trip_form.text_area :description, placeholder: "Ex: Something like: Planning a weekend getaway for June 2021.", size: "50%" %><br /><br />
-
-<h3>Places I'd like to eat:</h3>
-    <%= trip_form.fields_for :eateries do |eatery_form| %> 
-<ul>
-
-    <%= eatery_form.label :city %>
-    <%= eatery_form.text_field :city, placeholder: "Ex: Savannah" %><br /><br />
-
-    <%= eatery_form.label :state %>
-    <%= eatery_form.text_field :state, placeholder: "Ex: GA" %><br /><br />
-
-    <%= eatery_form.label :name %>
-    <%= eatery_form.text_field :name, placeholder: "Cotton & Rye" %><br /><br />
-
-    <%= eatery_form.label :about %>
-    <%= eatery_form.text_field :about, placeholder: "Pro tip: Book a private dinner inside the original bank vault at Cotton & Rye.", size: "50%" %><br /><br />
-     
-    <%= eatery_form.label :food_categories %>
-    <%= eatery_form.text_field :food_categories, placeholder: "Southern food, dinner, dessert", size: "50%" %><br /><br />
-
-    <%= eatery_form.label :dishes %>
-    <%= eatery_form.text_field :dishes, placeholder: "Crispy chicken wings, Peanut butter pie", size: "50%" %><br /><br />
-    
-</ul>
-<br / >
-<br / >
-
-    <% end %> 
-       <%= submit_tag "Create Itinerary" %>
-  <% end %> 
-
-
- 
+</body>

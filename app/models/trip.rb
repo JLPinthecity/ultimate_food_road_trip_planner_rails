@@ -1,14 +1,12 @@
 require 'pry'
 class Trip < ApplicationRecord
-    has_many :trip_destinations,  dependent: :destroy
-    has_many :destinations, through:  :trip_destinations
-    has_many :trip_users,  dependent: :destroy
-    has_many :users, through: :trip_users  
+    has_many :eateries_trips                                         
+    has_many :eateries, through: :eateries_trips
 
     validates :title, :presence => true
     validates :description, :presence => true
 
-    accepts_nested_attributes_for :destinations, :trip_users
+    accepts_nested_attributes_for :eateries
    
     def self.create_from_collection(trips) #for scraper
         trips.each do |trip_hash|
@@ -24,4 +22,12 @@ class Trip < ApplicationRecord
             end                            
         end
     end
+
+    # def destinations_attributes=(destinations_attributes)
+        # trip: {
+        #     destinations_attributes: {
+        #       city: '',
+        #       state: ''
+        #     }
+    # end
 end

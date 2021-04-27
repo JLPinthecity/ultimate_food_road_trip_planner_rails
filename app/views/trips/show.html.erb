@@ -10,9 +10,9 @@
 
       <% destination.eateries.each do |eatery| %>
      
-        <h3><%= eatery.name %></h3>
-        <p>The low-down: <%= eatery.about %></p>
-        <p>Food categories: <%= eatery.food_categories %></p>
+        <h3>Restaurant name: <%= eatery.name %></h3>
+        <p>About: <%= eatery.about %></p>
+        <p>Specialties: <%= eatery.food_categories %></p>
         <p>Recommended dishes: <%=  eatery.dishes %></p>
       
       <% end %>

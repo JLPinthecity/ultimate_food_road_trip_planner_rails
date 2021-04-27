@@ -8,6 +8,16 @@ class TripsController < ApplicationController
       @trip.destinations.build
     end
 
+    def create
+      raise params.inspect   #need to update strong params
+        @trip = Trip.new(trip_params)
+        if @trip.save
+          redirect to @trip
+        else
+          render :new
+        end
+    end
+
     def show
        @trip = Trip.find_by(id: params[:id])
     end

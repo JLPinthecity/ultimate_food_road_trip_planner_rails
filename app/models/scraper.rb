@@ -30,15 +30,15 @@ class Scraper
         :description => description,
     }
     
-    trip[:destinations] = create_destinations_and_eateries(trip, eateries)
+    trip[:destinations] = create_eateries(trip, eateries)
     
     trips << trip 
     end
     trips
   end
 
-  def create_destinations_and_eateries(trip, eateries)
-    # trip has multiple destinations
+  def create_eateries(trip, eateries)
+    # trip has multiple eateries
     trip[:destinations] = []
 
     eateries.each do |eatery|

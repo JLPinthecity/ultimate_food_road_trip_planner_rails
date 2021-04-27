@@ -10,36 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_23_235635) do
-
-  create_table "destinations", force: :cascade do |t|
-    t.string "city"
-    t.string "state"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2021_04_27_003411) do
 
   create_table "eateries", force: :cascade do |t|
     t.string "name"
+    t.string "city"
+    t.string "state"
     t.string "food_categories"
     t.text "about"
     t.string "dishes"
-    t.integer "destination_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "trip_destinations", force: :cascade do |t|
-    t.integer "trip_id"
-    t.integer "destination_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "trip_users", force: :cascade do |t|
+  create_table "eateries_trips", force: :cascade do |t|
     t.integer "user_id"
     t.integer "trip_id"
-    t.boolean "admin"
+    t.boolean "visited"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -47,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_04_23_235635) do
   create_table "trips", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

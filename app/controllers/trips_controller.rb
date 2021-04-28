@@ -25,7 +25,7 @@ class TripsController < ApplicationController
 
     def index
       if params[:user_id]
-        @trips = User.find(params[:user_id]).posts
+        @trips = User.find(params[:user_id]).trips
       else
         @trips = Trip.all
       end
@@ -49,7 +49,7 @@ class TripsController < ApplicationController
       find_user_by_id
       @trip = @user.trips.find(params[:id])
       @trip.destroy
-      redirect_to user_trips_path(@user, @trip)
+      redirect_to user_trips_path(@user)
     end
     
     private 

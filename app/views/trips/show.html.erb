@@ -1,6 +1,7 @@
 <% require 'pry' %>
 
 <body>
+
   <h1><%= @trip.title %></h1>
 
   <%= @trip.description %>
@@ -15,11 +16,12 @@
 
 </body>
 
+<% if user_match? %> 
 
-<% if current_user.id == @user.id %>
+    <%= link_to "Back to My Road Trip Itineraries", user_trips_path(@user)%><br><br>
 
     <%= link_to "Edit Food Road Trip Itinerary", edit_user_trip_path(@user, @trip) %><br><br>
 
-    <%= link_to "Delete Food Road Trip Itinerary", user_trip_path(@user, @trip), method: "delete" %>
+    <%= link_to "Delete Food Road Trip Itinerary", user_trip_path(@user, @trip), method: "delete" %> <br><br>
    
 <% end %>

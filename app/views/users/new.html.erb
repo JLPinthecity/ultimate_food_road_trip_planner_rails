@@ -1,3 +1,4 @@
+<% require 'pry' %>
 <header>
   <h1>Please Sign Up for an Account</h1>
 
@@ -5,8 +6,8 @@
 
   <% if @user.errors.any? %>
    <% @user.errors.full_messages.each do |message| %>
-     <h3><strong><%= message %></strong></h3>
-  <%end%>
+     <h3><%= message %></h3>
+  <% end %>
 <% end %>
    
       <%= f.label :name %>

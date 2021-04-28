@@ -2,16 +2,13 @@
 <h1>Trip Itineraries</h1>
 
 <% @trips.each do |trip| %>
-
-<p><%= link_to trip.title, user_trip_path(trip.user_id, trip) %></p> 
-
-
+  <p><%= link_to trip.title, user_trip_path(trip.user_id, trip) %></p> 
 <% end %>
 
 <br />
 <br />
 
-<%= link_to "CREATE NEW ROAD TRIP ITINERARY", new_user_trip_path(current_user) %>
+<%= link_to "CREATE NEW ROAD TRIP ITINERARY", new_user_trip_path(current_user) if current_user %>
 
 <br />
 <br />

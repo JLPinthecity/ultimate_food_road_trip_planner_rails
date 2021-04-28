@@ -18,23 +18,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
-
-  <header class="navbar  navbar-inverse">
-    <div class="navbar-class">
-      <div class="container">
-        <ul class="navbar">
-          <li><%=link_to "HOME", root_path %></li>
-          <li><%=link_to "ABOUT", about_path %></li>
-          <li><%=link_to "ITINERARIES", trips_path %></li>
-            <% if current_user %>
-              <li><%=link_to "LOG OUT", logout_path %></li>
-            <% else %>
-              <li><%=link_to "SIGN UP", signup_path %></li>
-              <li><%=link_to "LOG IN", login_path %></li>
-            <% end %>
-        </ul>
-   
+    <%= render "layouts/navbar" %>
+  
       <div class="wrapper">
         <h1 class="site-header__logo">
           <center><%= image_tag ("spoonfork.jpg") %></center>
@@ -42,25 +27,13 @@
       </div>
     </header>
 
-
-
     <center><%= image_tag ("nathan-dumlao-nCeR4kAcZ2c-unsplash.jpg"), size: "500x750" %></center>
 
       <div class='content'>
         <%= yield %>
       </div>
-  
-  
-  
+
   
   </body>
 
-<br />
-<br />
-
-<center><strong><footer style="font-size:100%;">
-<% if @user %>
-Currently logged in as <%= @user.name %>.
-<% end %>
-</footer></strong</center>
-</html>
+<%= render "layouts/footer" %>

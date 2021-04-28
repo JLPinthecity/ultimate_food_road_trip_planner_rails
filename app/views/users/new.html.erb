@@ -3,7 +3,7 @@
 
   <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
-  <% end %>
+  <% end %>  #content tag to create div 
 
     <%= form_for @user, url: signup_path do |f| %>
       <%= f.label :name %>

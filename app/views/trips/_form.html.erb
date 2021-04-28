@@ -1,5 +1,12 @@
 <%= form_for [@user, @trip] do |trip_form| %>
 
+<% if @trip.errors.any? %>
+  <div id="error_explanation">
+    <%= @trip.errors.full_messages.join(". ") %>
+  </div>
+<% end %>
+
+
   <%= trip_form.label :itinerary_title %>
   <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />
 

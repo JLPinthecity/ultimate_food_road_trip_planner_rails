@@ -34,16 +34,24 @@ class TripsController < ApplicationController
     def edit
       find_user_by_id
       find_trip_by_id
-
     end
 
     def update
       find_trip_by_id
+      if @trip.update(trip_params)
+        redirect_to user_trip_path(current_user, @trip)
+      else
+        render :edit
+      end
     end
 
     def destroy
+      find_user_by_id
+      @trip = @user.trips.find(params[:id])
+      @trip.destroy
+      redirect_to user_trips_path(@user, @trip)
     end
-
+    
     private 
 
     def trip_params 

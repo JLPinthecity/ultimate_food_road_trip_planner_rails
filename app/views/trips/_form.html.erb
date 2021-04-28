@@ -2,16 +2,21 @@
 
 <% if @trip.errors.any? %>
   <div id="error_explanation">
-    <%= @trip.errors.full_messages.join(". ") %>
-  </div>
+    <h2><%= pluralize(@post.errors.count, "error") %>
+      prohibited this post from being saved:
+    </h2>
+   <% @trip.errors.full_messages.each do |message| %>
+     <h3><strong><%= message %></strong></h3>
+  <%end%>
 <% end %>
-
 
   <%= trip_form.label :itinerary_title %>
   <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />
+ 
 
   <%= trip_form.label :description %>
   <%= trip_form.text_area :description, placeholder: "Ex: Something like: Planning a weekend getaway for June 2021.", size: "50%" %><br /><br />
+
 
 <h3>Places I'd like to eat:</h3>
     <%= trip_form.fields_for :eateries do |eatery_form| %> 

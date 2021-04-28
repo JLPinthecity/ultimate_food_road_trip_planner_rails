@@ -1,11 +1,15 @@
 <header>
   <h1>Please Sign Up for an Account</h1>
 
-  <% if flash[:notice] %>
-    <div class="notice"><%= flash[:notice] %></div>
-  <% end %>  #content tag to create div 
+  <%= form_for @user, url: signup_path do |f| %>
 
-    <%= form_for @user, url: signup_path do |f| %>
+  <% if @user.errors.any? %>
+   <% @user.errors.full_messages.each do |message| %>
+     <h3><strong><%= message %></strong></h3>
+  <%end%>
+<% end %>
+
+   
       <%= f.label :name %>
       <%= f.text_field :name %><br />
       <%= f.label :email %>
@@ -27,6 +31,4 @@
 <br>
 <br>
 
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
-<% end %>
+

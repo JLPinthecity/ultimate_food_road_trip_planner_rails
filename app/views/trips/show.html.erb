@@ -8,7 +8,7 @@
 
   <% @trip.eateries.each do |eatery| %>
     <h2>Restaurant name: <%= eatery.name %></h2>
-    <p>Location: <%= eatery.location %> 
+    <p>Location: <%= eatery.location if eatery.city != "" %> 
     <p>About: <%= eatery.about %></p>
     <p>Specialties: <%= eatery.food_categories %></p>
     <p>Recommended dishes: <%=  eatery.dishes %></p>

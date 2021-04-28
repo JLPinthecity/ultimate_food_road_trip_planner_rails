@@ -33,5 +33,5 @@
 <br / >
 
     <% end %> 
-       <%= submit_tag "Create Itinerary" %>
+       <%= submit_tag action_name == 'new' ? 'Create Itinerary' : 'Submit Changes' %>
 <% end %> 

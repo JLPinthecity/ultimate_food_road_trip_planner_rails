@@ -12,7 +12,7 @@ Trip belongs to a user.
 Trip & Eatery share the EateriesTrips join table. 
 - [X] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity)
 EateriesTrips also has a "visited" attribute boolean.
-- [ ] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
+- [X] Include reasonable validations for simple model objects (list of model objects with validations e.g. User, Recipe, Ingredient, Item)
 - [ ] Include a class level ActiveRecord scope method (model object & class method name and URL to see the working feature e.g. User.most_recipes URL: /users/most_recipes)
 - [X] Include signup
 - [X] Include login
@@ -23,10 +23,10 @@ I used Omniauth Facebook.
 "users/:id/trips/:id" in place
 - [X] Include nested resource "new" form (URL e.g. recipes/1/ingredients/new)
 "users/:id/trips/new" in place
-- [ ] Include form display of validation errors (form URL e.g. /recipes/new)
+- [X] Include form display of validation errors (form URL e.g. /recipes/new)
 
 Confirm:
-- [ ] The application is pretty DRY
-- [ ] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
-- [ ] Views use partials if appropriate
+- [X] The application is pretty DRY
+- [X] Limited logic in controllers
+- [X] Views use helper methods if appropriate
+- [X] Views use partials if appropriate

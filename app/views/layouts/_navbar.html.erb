@@ -5,7 +5,7 @@
             <li><%=link_to "HOME", root_path %></li>
             <li><%=link_to "ABOUT", about_path %></li>
             <li><%=link_to "ITINERARIES", trips_path %></li>
-            
+        
             <% if current_user %>
               <li><%=link_to "LOG OUT", logout_path %></li>
             <% else %>

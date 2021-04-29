@@ -6,5 +6,4 @@ class EateriesTrip < ApplicationRecord
 
     scope :completed, -> { where(completed: true) }
     scope :not_completed, -> { where(completed: false) }
-
 end

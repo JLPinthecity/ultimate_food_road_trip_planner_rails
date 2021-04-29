@@ -5,6 +5,8 @@ class Trip < ApplicationRecord
 
     validates :title, :presence => true
     validates :description, :presence => true
+
+    accepts_nested_attributes_for :eateries_trips
    
     def self.create_from_collection(trips) #for scraper
         u = User.find_by(:name => "Admin")
@@ -23,6 +25,7 @@ class Trip < ApplicationRecord
         self.eateries.build(eatery_attributes)
       end
     end
+
 end
 
 

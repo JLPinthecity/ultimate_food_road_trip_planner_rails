@@ -3,7 +3,9 @@ class CreateEateriesTrips < ActiveRecord::Migration[6.1]
     create_table :eateries_trips do |t|
       t.integer :eatery_id
       t.integer :trip_id
-      t.boolean :completed, default: false
+      t.datetime :start_date
+      t.datetime :end_date
+      t.text :notes
       t.timestamps
     end
   end

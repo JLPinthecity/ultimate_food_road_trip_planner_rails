@@ -1,5 +1,15 @@
+<% require 'pry' %>
+
 <h1><%= @user.name %></h1>
 
 <p><%= @user.email %></p>
+
+<% @trips.each do |trip| %>
+
+    <% trip.eatery_trips.visited.to_a.each do |eatery| %>
+        <p><%= Eatery.find(eatery.eatery_id).name %></p>
+    <%end%>
+
+<% end %>
 
 <% link_to "My Road Trip Itineraries", user_path(@user) %> 

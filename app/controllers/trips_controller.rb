@@ -6,8 +6,6 @@ class TripsController < ApplicationController
       @user = current_user
       @trip = @user.trips.build
       5.times { @trip.eatery_trips.build.build_eatery }
-      # 5.times { @trip.eateries.build }
-      # @trip.eateries_trips.build
     end
    
     def create

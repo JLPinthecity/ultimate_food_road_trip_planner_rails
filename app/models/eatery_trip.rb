@@ -1,3 +1,4 @@
+require 'pry'
 class EateryTrip < ApplicationRecord
     belongs_to :eatery
     belongs_to :trip 
@@ -6,14 +7,18 @@ class EateryTrip < ApplicationRecord
 
     accepts_nested_attributes_for :eatery
 
-    scope :visited, -> { where('visit_date IS NOT ? AND visit_date != ?', nil, '') }
-    scope :reviewed, -> { where('reviewed IS NOT ? AND reviewed != ?', nil, '') }
+    scope :visited, -> { where("visit_date < ?",Time.now )} 
+    scope :reviewed, -> { where.not("review: [nil,'']")  }
 
     def visit_date_exists
-      self.visit_date != "nil" || ""
+      self.visit_date.present?
     end
 
     def review_exists
-      self.eatery_trip.review != "nil" || "" 
+      self.review.present?
+    end
+
+    def format_date
+      self.visit_date.strftime("%B %d, %Y")
     end
 end

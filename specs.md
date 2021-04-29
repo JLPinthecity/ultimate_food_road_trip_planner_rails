@@ -7,7 +7,7 @@ I have used the Ruby on Rails framework for this project.
 The Trip has_many eateries & Eatery has_many trips fulfills this requirement.
 - [X] Include at least one belongs_to relationship (x belongs_to y; e.g. Post belongs_to User)
 Trip belongs to a user. 
-- [ ] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
+- [X] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
 - [X] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)
 Trip & Eatery share the EateriesTrips join table. 
 - [X] The "through" part of the has_many through includes at least one user submittable attribute, that is to say, some attribute other than its foreign keys that can be submitted by the app's user (attribute_name e.g. ingredients.quantity)

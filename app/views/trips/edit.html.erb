@@ -2,5 +2,9 @@
 
 <%= render partial: "form", locals: { trip: @trip } %>
 
-<%= link_to 'Show', @trip %> |
-<%= link_to 'Back', trips_path %> 
+<br/>
+<br/>
+<% if user_match? %> 
+    <%= link_to "Back to My Road Trip Itineraries", user_trips_path(@user)%><br><br>
+    <%= link_to "Delete Itinerary", user_trip_path(@user, @trip), method: "delete" %> <br><br>
+<% end %>

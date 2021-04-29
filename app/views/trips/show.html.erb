@@ -6,23 +6,24 @@
 
 <h2>Description: <%= @trip.description %></h2>
 
-
   <% @trip.eatery_trips.each do |eatery_trip| %>
     <h2>Restaurant name: <%= eatery_trip.eatery.name %></h2>
     <p>Location: <%= eatery_trip.eatery.location if eatery_trip.eatery.location != "" %>
     <p>Food categories: <%= eatery_trip.eatery.food_categories %>
     <p>Hot tips: <%= eatery_trip.eatery.about %>
     <p>Dishes: <%= eatery_trip.eatery.dishes %> 
-    <% if visit_date_exists %>
-       <p>Date visited: <%= eatery_trip.visit_date %></p>
+    <% if eatery_trip.visit_date_exists %>
+       <p>Date visited: <%= eatery_trip.format_date %></p>
+  
     <% end %>
-    <% if review_exists %>
+    <% if eatery_trip.review_exists %>
       <p>Review: <%= eatery_trip.review %></p>
     <% end %>
   <% end %>
   
 </body>
-
+<br/>
+<br/>
 <% if user_match? %> 
 
     <%= link_to "Back to My Road Trip Itineraries", user_trips_path(@user)%><br><br>

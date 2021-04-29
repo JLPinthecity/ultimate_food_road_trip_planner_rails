@@ -3,15 +3,8 @@ class TripsController < ApplicationController
     before_action :verify_user, only: [:new, :create, :edit, :update, :destroy]  #all users may see itineraries
 
     def new
-      # find_user_by_id
-      # @trip = Trip.new
-      # 5.times { @trip.eateries.build }
       @trip = current_user.trips.build
-      5.times { @trip.eateries.build }
-      @trip.eateries_trips.build
-      
-      
-
+      5.times { @trip.eateries_trips.build.build_eatery }
     end
    
     def create

@@ -2,35 +2,38 @@
 <%= form_for [@user, @trip] do |trip_form| %>
     <% if @trip.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@post.errors.count, "error") %>
-          prohibited this post from being saved:
-        </h2>
-         <% @trip.errors.full_messages.each do |message| %>
-           <h3><strong><%= message %></strong></h3>
-         <%end%>
+        <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this post from being saved:</h2>
+          <ul>
+          <% @trip.errors.full_messages.each do |message| %>
+           <li><%= message %></li>
+          <% end %>
       </div>
     <% end %>
 
-  <%= trip_form.label :itinerary_title %>
-  <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />
+    <div>
+    <%= trip_form.label :itinerary_title %>
+    <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah, Georgia", size: "50%" %> <br /><br />
  
-  <%= trip_form.label :description %>
-  <%= trip_form.text_area :description, placeholder: "Ex: Something like: Planning a weekend getaway for June 2021.", size: "50%" %><br /><br />
+    <%= trip_form.label :description %>
+    <%= trip_form.text_area :description, placeholder: "Ex: Something like: Planning a weekend getaway for June 2021.", size: "50%" %><br /><br />
+    </div>
 
-<h2>Places I'd like to eat:</h2>
+    <h2>Places I'd like to eat:</h2>
 
-  <h3>The details:</h3>
-    <%= trip_form.fields_for :eateries_trips do |eatery_trip_form| %> 
+    <h3>The details:</h3>
+   
+    <%= trip_form.fields_for :eatery_trips do |eatery_trip_form| %> 
+
 
       <%= eatery_trip_form.label :intended_visit_date %>
       <%= eatery_trip_form.date_field :visit_date %><br /><br />
 
       <%= eatery_trip_form.label :review_after_meal %>
       <%= eatery_trip_form.text_area :review, placeholder: "Add notes about your favorite restaurants or meals here during or after your road trip." %><br /><br />
-      <% end %> 
-
+    
  
-      <%= eatery_trip_form.fields_for :eateries do |eatery_form| %> 
+      <%= eatery_trip_form.fields_for :eatery do |eatery_form| %> 
+      
         <ul>
         <%= eatery_form.label :city %>
         <%= eatery_form.text_field :city, placeholder: "Ex: Savannah" %><br /><br />
@@ -50,7 +53,9 @@
         <%= eatery_form.label :dishes %>
         <%= eatery_form.text_field :dishes, placeholder: "Crispy chicken wings, Peanut butter pie", size: "50%" %><br /><br />
         </ul>
+
       <% end %> 
+    <% end %> 
 <br / >
 <br / >
     <%= submit_tag action_name == 'new' ? 'Create Itinerary' : 'Save Changes to Itinerary' %>

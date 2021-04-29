@@ -5,13 +5,12 @@ class TripsController < ApplicationController
     def new
       @user = current_user
       @trip = @user.trips.build
-      5.times { @trip.eateries_trips.build.build_eatery }
+      5.times { @trip.eatery_trips.build.build_eatery }
       # 5.times { @trip.eateries.build }
       # @trip.eateries_trips.build
     end
    
     def create
-      raise params.inspect
       find_user_by_id
       @trip = @user.trips.new(trip_params)
       if @trip.save
@@ -58,8 +57,7 @@ class TripsController < ApplicationController
     private 
 
     def trip_params 
-        params.require(:trip).permit(:title, :description, :eateries_attributes => [:city, :state, :name, :about, :food_categories, :dishes], 
-                                     :eateries_trips_attributes => [:visit_date, :review])
+        params.require(:trip).permit(:title, :description, :eatery_trips_attributes => [:visit_date, :review, :eatery_attributes => [:city, :state, :name, :about, :food_categories, :dishes]])
     end
 
     def find_trip_by_id

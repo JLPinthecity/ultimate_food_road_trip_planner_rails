@@ -1,12 +1,13 @@
 <% require 'pry' %>
 <header>
-  <h1>Please Sign Up for an Account</h1>
+  <h1>Account Signup</h1>
 
   <%= form_for @user, url: signup_path do |f| %>
 
   <% if @user.errors.any? %>
+  Please address the following before submitting:
    <% @user.errors.full_messages.each do |message| %>
-     <h3><%= message %></h3>
+     <h3><i><%= message %></i></h3>
   <% end %>
 <% end %>
    
@@ -21,6 +22,8 @@
       <%= f.submit "Create account" %>
     <% end %>
 </header >
+<br/>
+<br/>
 
 <footer id="footer">
 

@@ -3,7 +3,7 @@ class CreateEateriesTrips < ActiveRecord::Migration[6.1]
     create_table :eateries_trips do |t|
       t.integer :eatery_id
       t.integer :trip_id
-      t.boolean :visited
+      t.boolean :completed, default: false
       t.timestamps
     end
   end

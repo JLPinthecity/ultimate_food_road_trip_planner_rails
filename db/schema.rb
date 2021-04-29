@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_003411) do
   create_table "eateries_trips", force: :cascade do |t|
     t.integer "eatery_id"
     t.integer "trip_id"
-    t.boolean "visited"
+    t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

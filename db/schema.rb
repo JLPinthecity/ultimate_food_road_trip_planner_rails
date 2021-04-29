@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2021_04_27_003411) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "eateries_trips", force: :cascade do |t|
+  create_table "eatery_trips", force: :cascade do |t|
     t.integer "eatery_id"
     t.integer "trip_id"
     t.datetime "visit_date"

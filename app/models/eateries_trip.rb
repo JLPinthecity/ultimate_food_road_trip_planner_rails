@@ -4,6 +4,6 @@ class EateriesTrip < ApplicationRecord
 
     validates_uniqueness_of :eatery_id, scope: [:trip_id]
 
-    scope :completed, -> { where(completed: true) }
-    scope :not_completed, -> { where(completed: false) }
+    scope :visited, -> { where('visit_date IS NOT ? AND visit_date != ?', nil, '') }
+    scope :reviewed, -> { where('reviewed IS NOT ? AND reviewed != ?', nil, '') }
 end

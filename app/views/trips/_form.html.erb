@@ -1,4 +1,7 @@
+<% require 'pry' %>
 <%= form_for [@user, @trip] do |trip_form| %>
+<% binding.pry %>
+
 
 <% if @trip.errors.any? %>
   <div id="error_explanation">
@@ -41,17 +44,14 @@
     <%= eatery_form.text_field :dishes, placeholder: "Crispy chicken wings, Peanut butter pie", size: "50%" %><br /><br />
 </ul>
     
-    <h3>Trip details</h3>
+    <h3>Trip details (Add after you visit to keep tabs!)</h3>
       <%= trip_form.fields_for :eateries_trips do |eatery_trip| %> 
 
-      <%= eatery_trip.label :start_date %>
-      <%= eatery_trip.date_field :start_date %><br /><br />
+      <%= eatery_trip.label :visit_date %>
+      <%= eatery_trip.date_field :visit_date %><br /><br />
 
-      <%= eatery_trip.label :end_date %>
-      <%= eatery_trip.date_field :end_date %><br /><br />
-
-      <%= eatery_trip.label :notes %>
-      <%= eatery_trip.text_area :notes, placeholder: "Add notes about your favorite restaurants or meals here during or after your road trip." %><br /><br />
+      <%= eatery_trip.label :review %>
+      <%= eatery_trip.text_area :review, placeholder: "Add notes about your favorite restaurants or meals here during or after your road trip." %><br /><br />
       <% end %> 
 
   

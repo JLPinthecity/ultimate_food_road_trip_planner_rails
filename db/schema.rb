@@ -26,9 +26,8 @@ ActiveRecord::Schema.define(version: 2021_04_27_003411) do
   create_table "eateries_trips", force: :cascade do |t|
     t.integer "eatery_id"
     t.integer "trip_id"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.text "notes"
+    t.datetime "visit_date"
+    t.text "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

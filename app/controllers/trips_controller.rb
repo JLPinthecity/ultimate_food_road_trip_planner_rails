@@ -1,13 +1,17 @@
 require 'pry'
 class TripsController < ApplicationController
-    before_action :verify_user, only: [:new, :create, :edit, :update, :destroy]  #all users may see itineraries
+    before_action :verify_user, only: [:new, :create, :edit, :update, :destroy]  #all users may see itineraries but can't create or edit
 
     def new
-      @trip = current_user.trips.build
+      @user = current_user
+      @trip = @user.trips.build
       5.times { @trip.eateries_trips.build.build_eatery }
+      # 5.times { @trip.eateries.build }
+      # @trip.eateries_trips.build
     end
    
     def create
+      raise params.inspect
       find_user_by_id
       @trip = @user.trips.new(trip_params)
       if @trip.save
@@ -55,7 +59,7 @@ class TripsController < ApplicationController
 
     def trip_params 
         params.require(:trip).permit(:title, :description, :eateries_attributes => [:city, :state, :name, :about, :food_categories, :dishes], 
-                                     :eateries_trips_attributes => [:start_date, :end_date, :notes])
+                                     :eateries_trips_attributes => [:visit_date, :review])
     end
 
     def find_trip_by_id

@@ -1,24 +1,19 @@
-# README
+# A DAY AWAY 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Day Away is an MVC food-focused road trip planner built with Ruby on Rails. Find out more about the coding process by reading [my Medium post](https://joannpan.medium.com/building-a-road-trip-planner-from-scratch-with-ruby-on-rails-40ee9bd6e80c).
 
-Things you may want to cover:
+# Installation
 
-* Ruby version
+1. Git clone this repo.
 
-* System dependencies
+2. CD into this repo on your local machine. 
 
-* Configuration
+3. Run $ bundle install in your terminal to install all dependencies. 
 
-* Database creation
+4. Run $ rails s to launch Puma web server.
 
-* Database initialization
+5. Visit http://localhost:3000 to sign up for an account and create road trip itineraries.
 
-* How to run the test suite
+6. Enter CTRL + C to stop running server and exit program. 
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...

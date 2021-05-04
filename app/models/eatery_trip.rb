@@ -7,8 +7,7 @@ class EateryTrip < ApplicationRecord
 
     accepts_nested_attributes_for :eatery
 
-    scope :visited, -> { where("visit_date < ?",Time.now )} 
-    scope :reviewed, -> { where.not("review: [nil,'']")  }
+    scope :visited, -> { where("visit_date < ?",Time.now ) } 
 
     def visit_date_exists
       self.visit_date.present?

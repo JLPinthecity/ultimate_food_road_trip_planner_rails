@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @user.save
       login(@user)
       redirect_to root_path
-      flash[:notice] = "Account successfully created."
+      flash[:notice] = "Account successfully created."     #works
     else
       render :new
     end
@@ -20,7 +20,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @trips = @user.trips
-    
   end
 
   private 

@@ -1,6 +1,6 @@
 require 'pry'
 class TripsController < ApplicationController
-    before_action :verify_user, only: [:new, :create, :edit, :update, :destroy]  #all users may see itineraries but can't create or edit
+    before_action :verify_user, only: [:new, :create, :edit, :update, :destroy]  
 
     def new
       @user = current_user

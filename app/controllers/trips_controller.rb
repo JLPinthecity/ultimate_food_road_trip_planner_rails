@@ -7,6 +7,7 @@ class TripsController < ApplicationController
     def new
       @user = current_user
       @trip = @user.trips.build
+      #@trip.eatery_trips.build.build_eatery
       5.times { @trip.eatery_trips.build.build_eatery }
     end
    

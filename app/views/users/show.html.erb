@@ -9,7 +9,12 @@
     <% trip.eatery_trips.visited.to_a.each do |eatery| %>
      <% id = eatery.eatery_id %>
      <% e = Eatery.find_by(id: id) %>
-     <p><%= e.name %></p>
+     <p><%= e.name %> 
+     
+     <% if eatery.review.present? %>
+       <p>Here's what you thought: <%= eatery.review %></p>
+     <% end %>
+
     <% end %>
 
 <% end %>

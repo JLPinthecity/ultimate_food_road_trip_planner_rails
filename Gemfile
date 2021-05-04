@@ -36,6 +36,8 @@ gem 'nokogiri'
 
 gem 'open-uri'
 
+gem 'email_validator'  
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

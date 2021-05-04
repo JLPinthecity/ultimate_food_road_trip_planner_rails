@@ -1,6 +1,8 @@
 require 'pry'
 class TripsController < ApplicationController
-    before_action :verify_user, only: [:new, :create, :edit, :update, :destroy]  
+    before_action :verify_user, except: [:show, :index]
+    before_action :find_user_by_id, except: [:new, :index]
+    before_action :find_trip_by_id, only: [:show, :edit, :update]
 
     def new
       @user = current_user
@@ -9,18 +11,15 @@ class TripsController < ApplicationController
     end
    
     def create
-      find_user_by_id
       @trip = @user.trips.new(trip_params)
       if @trip.save
         redirect_to user_trip_path(@user, @trip)
       else
-        render :new
+        render :new 
       end
     end
   
     def show
-       find_trip_by_id
-       find_user_by_id
     end
 
     def index
@@ -32,12 +31,9 @@ class TripsController < ApplicationController
     end
 
     def edit
-      find_user_by_id
-      find_trip_by_id
     end
 
     def update
-      find_trip_by_id
       if @trip.update(trip_params)
         redirect_to user_trip_path(current_user, @trip)
       else
@@ -46,7 +42,6 @@ class TripsController < ApplicationController
     end
 
     def destroy
-      find_user_by_id
       @trip = @user.trips.find(params[:id])
       @trip.destroy
       redirect_to user_trips_path(@user)

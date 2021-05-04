@@ -1,22 +1,19 @@
 <% require 'pry' %>
-
 <h1>Hello, <%= @user.name %>.</h1>
 
-<h2>Here is where you've eaten: </h2>
+<h2>Here's where you've eaten: </h2>
 
 <% @trips.each do |trip| %>
-
     <% trip.eatery_trips.visited.to_a.each do |eatery| %>
-     <% id = eatery.eatery_id %>
-     <% e = Eatery.find_by(id: id) %>
-     <p><%= e.name %> 
-     
-     <% if eatery.review.present? %>
-       <p>Here's what you thought: <%= eatery.review %></p>
-     <% end %>
-
+      <% id = eatery.eatery_id %>
+      <% e = Eatery.find_by(id: id) %>
+      <ul>
+        <li><%= e.name %></li>
+        <% if eatery.review.present? %>
+          <p>Your review: <%= eatery.review %></p>
+        <% end %>
+      </ul>
     <% end %>
-
 <% end %>
 
-<%= link_to "My Road Trip Itineraries", user_trips_path(@user) %> 
+<%= link_to "Back to My Road Trip Itineraries", user_trips_path(@user) %> 

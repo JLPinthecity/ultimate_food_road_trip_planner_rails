@@ -55,7 +55,7 @@ class TripsController < ApplicationController
     private 
 
     def trip_params 
-        params.require(:trip).permit(:title, :description, :eatery_trips_attributes => [:visit_date, :review, :eatery_attributes => [:city, :state, :name, :about, :food_categories, :dishes]])
+        params.require(:trip).permit(:title, :description, :eatery_trips_attributes => [:id, :visit_date, :review, :eatery_attributes => [:city, :state, :name, :about, :food_categories, :dishes, :id]])
     end
 
     def find_trip_by_id

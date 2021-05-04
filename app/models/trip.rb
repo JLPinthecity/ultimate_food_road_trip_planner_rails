@@ -19,13 +19,6 @@ class Trip < ApplicationRecord
             end         
         end
     end
-
-    # def find_or_create_eateries
-    #    self.eatery_trips.each do |eatery_trip|
-    #     eatery_trip.eatery = Eatery.find_or_create_by(:name => eatery_trip.eatery.name)
-    #   end
-    # end
-
 end
 
 
@@ -33,6 +26,20 @@ end
 
 
 
+
+
+
+
+
+
+
+
+
+  # def find_or_create_eateries
+    #    self.eatery_trips.each do |eatery_trip|
+    #     eatery_trip.eatery = Eatery.find_or_create_by(:name => eatery_trip.eatery.name)
+    #   end
+    # end
 
 
     #   eateries_attributes = [

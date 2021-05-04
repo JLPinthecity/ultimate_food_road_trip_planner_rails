@@ -1,3 +1,4 @@
+require 'pry'
 class ApplicationController < ActionController::Base
     helper_method :current_user, :user_match?, :login, :logged_in?, :verify_user 
 
@@ -8,7 +9,7 @@ class ApplicationController < ActionController::Base
     end
 
     def user_match?
-        current_user.id == @user.id
+        current_user.id == @user.id if logged_in? 
     end
 
     def login(user)

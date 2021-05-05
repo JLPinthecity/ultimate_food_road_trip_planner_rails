@@ -7,8 +7,8 @@ class TripsController < ApplicationController
     def new
       @user = current_user
       @trip = @user.trips.build
-      #@trip.eatery_trips.build.build_eatery
-      5.times { @trip.eatery_trips.build.build_eatery }
+      # 3.times { @trip.eatery_trips.build }
+      3.times { @trip.eatery_trips.build.build_eatery }
     end
    
     def create
@@ -36,6 +36,7 @@ class TripsController < ApplicationController
 
     def update
       if @trip.update(trip_params)
+    
         redirect_to user_trip_path(current_user, @trip)
       else
         render :edit
@@ -51,7 +52,20 @@ class TripsController < ApplicationController
     private 
 
     def trip_params 
-        params.require(:trip).permit(:title, :description, :eatery_trips_attributes => [:id, :visit_date, :review, :eatery_attributes => [:city, :state, :name, :about, :food_categories, :dishes, :id]])
+        params.require(:trip).permit(:title, 
+                                     :description, 
+                                     eatery_ids:[], 
+                                     :eatery_trips_attributes => [:id, 
+                                                                  :visit_date, 
+                                                                  :review, 
+                                                                  :_destroy, 
+                                                                  :eatery_attributes => [:city, 
+                                                                                         :state, 
+                                                                                         :name, 
+                                                                                         :about, 
+                                                                                         :food_categories, 
+                                                                                         :dishes,          
+                                                                                         :id]])
     end
 
     def find_trip_by_id
@@ -63,3 +77,6 @@ class TripsController < ApplicationController
     end
     
 end
+
+
+

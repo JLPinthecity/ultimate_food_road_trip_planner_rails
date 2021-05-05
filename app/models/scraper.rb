@@ -64,13 +64,13 @@ end
 
 
 
-#scrape = Scraper.new
-#scrape.scrape_road_foods
+# scrape = Scraper.new
+# scrape.scrape_road_foods
 
 
 
-#trips = [trip = {}, trip = {}, trip = {
-#title => title, 
-#description => description, 
-#eateries => [{eatery, eatery, eatery}]
-#}]
+# #trips = [trip = {}, trip = {}, trip = {
+# #title => title, 
+# #description => description, 
+# #eateries => [{eatery, eatery, eatery}]
+# #}]

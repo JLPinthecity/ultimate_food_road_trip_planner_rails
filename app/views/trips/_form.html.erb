@@ -47,8 +47,9 @@
       <% end %> 
     </div>
 
-    Select existing eateries: 
-    <%= trip_form.collection_check_boxes :eatery_ids, Eatery.all, :id, :name %>
+   
 
 <%= render "submit_button" %>
 <% end %> 
+ <%# Select existing eateries: 
+    <%= trip_form.collection_check_boxes :eatery_ids, Eatery.all, :id, :name %> 

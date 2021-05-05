@@ -7,8 +7,8 @@ class TripsController < ApplicationController
     def new
       @user = current_user
       @trip = @user.trips.build
-      # 3.times { @trip.eatery_trips.build }
       3.times { @trip.eatery_trips.build.build_eatery }
+       # 3.times { @trip.eatery_trips.build }
     end
    
     def create
@@ -58,7 +58,6 @@ class TripsController < ApplicationController
                                      :eatery_trips_attributes => [:id, 
                                                                   :visit_date, 
                                                                   :review, 
-                                                                  :_destroy, 
                                                                   :eatery_attributes => [:city, 
                                                                                          :state, 
                                                                                          :name, 

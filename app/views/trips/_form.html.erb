@@ -12,54 +12,32 @@
     <% end %>
 
     <div id="trip">
-      <%= f.label :title %>
-      <%= f.text_area :title, placeholder: "Ex: Brunch and Breweries" %> <br /><br />
-      <%= f.label :description %>
-      <%= f.text_area :description, placeholder: "Ex: Southern Road Trip 2021" %><br /><br />
+      <%= render "trip_attributes", f: f %>
     </div>
-
    
     <div id="eatery_trips">
-       <%= f.fields_for :eatery_trips do |ff| %>
-         <h2>Select existing eatery.</h2>
-        
-         <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, prompt: true) %> <br /><br />
+      <%= f.fields_for :eatery_trips do |ff| %>
+       
+        <h2>Select existing eatery:</h2>
+      
+          <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, prompt: true) %> <br /><br />
 
-         <%= ff.label :visit_date %>
-         <%= ff.date_field :visit_date %><br /><br />
+        <h2>Or create a new eatery to visit:</h2>
 
-         <%= ff.label :review %>
-         <%= ff.text_area :review, placeholder: "Add notes here during or after your visit." %><br /><br />
-        <% end %>
-
-        <h2>Or create a new eatery to visit.</h2>
-
-        <div id="eatery_attributes">
-        <%= f.fields_for :eatery_trips do |ff| %>
+        <div id="eatery">
 	        <%= ff.fields_for :eatery do |fff| %>
-	        <ul>
-            <%= fff.label :city %>
-            <%= fff.text_field :city, placeholder: "Ex: Savannah" %><br /><br />
-            <%= fff.label :state %>
-            <%= fff.text_field :state, placeholder: "Ex: GA" %><br /><br />
-            <%= fff.label :name %>
-            <%= fff.text_field :name, placeholder: "Cotton & Rye" %><br /><br />
-            <%= fff.label :about %>
-            <%= fff.text_field :about, placeholder: "Pro tip: Book a private dinner inside the original bank vault.", size: "50%" %><br /><br />
-            <%= fff.label :food_categories %>
-            <%= fff.text_field :food_categories, placeholder: "Southern food, dinner, dessert", size: "50%" %><br /><br />
-            <%= fff.label :dishes %>
-            <%= fff.text_field :dishes, placeholder: "Crispy chicken wings, peanut butter pie", size: "50%" %><br /><br />
-          </ul>
+	          <ul>
+              <%= render "eatery_attributes", fff: fff %>
+            </ul>
+	        <% end %>
         </div>
-	    <% end %>
+
 		    <%= ff.label :visit_date %>
         <%= ff.date_field :visit_date %><br /><br />
-
         <%= ff.label :review %>
         <%= ff.text_area :review, placeholder: "Add notes here during or after your visit." %><br /><br />
       <% end %>
-</div>
+    </div>
 
 <%= render "submit_button" %>
 <% end %> 

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @user.save
       login(@user)
       redirect_to root_path
-      flash[:notice] = "Account successfully created."     #works
+      flash[:notice] = "Account successfully created."     
     else
       render :new
     end

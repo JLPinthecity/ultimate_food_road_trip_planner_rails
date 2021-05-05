@@ -1,5 +1,5 @@
 <% require 'pry' %>
-<%= form_for [@user, @trip] do |trip_form| %>
+<%= form_for [@user, @trip] do |f| %>
     <% if @trip.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -12,44 +12,55 @@
     <% end %>
 
     <div id="trip">
-      <%= trip_form.label :itinerary_title %>
-      <%= trip_form.text_area :title, placeholder: "Ex: Brunch and Breweries in Savannah", size: "50%" %> <br /><br />
-      <%= trip_form.label :description %>
-      <%= trip_form.text_area :description, placeholder: "Ex: Southern Road Trip 2021", size: "50%" %><br /><br />
-    </div>
-
-    <div id="eatery_trip_attributes">
-      <%= trip_form.fields_for :eatery_trips do |eatery_trip_form| %> 
-        <%= eatery_trip_form.label :intended_visit_date %>
-        <%= eatery_trip_form.date_field :visit_date %><br /><br />
-        <%= eatery_trip_form.label :review_after_meal %>
-        <%= eatery_trip_form.text_area :review, placeholder: "Add notes here during or after your road trip." %><br /><br />
-    
-
-      <div id="eatery_attributes">
-        <%= eatery_trip_form.fields_for :eatery do |eatery_form| %> 
-        <ul>
-          <%= eatery_form.label :city %>
-          <%= eatery_form.text_field :city, placeholder: "Ex: Savannah" %><br /><br />
-          <%= eatery_form.label :state %>
-          <%= eatery_form.text_field :state, placeholder: "Ex: GA" %><br /><br />
-          <%= eatery_form.label :name %>
-          <%= eatery_form.text_field :name, placeholder: "Cotton & Rye" %><br /><br />
-          <%= eatery_form.label :about %>
-          <%= eatery_form.text_field :about, placeholder: "Pro tip: Book a private dinner inside the original bank vault.", size: "50%" %><br /><br />
-          <%= eatery_form.label :food_categories %>
-          <%= eatery_form.text_field :food_categories, placeholder: "Southern food, dinner, dessert", size: "50%" %><br /><br />
-          <%= eatery_form.label :dishes %>
-          <%= eatery_form.text_field :dishes, placeholder: "Crispy chicken wings, peanut butter pie", size: "50%" %><br /><br />
-        </ul>
-      </div>
-        <% end %> 
-      <% end %> 
+      <%= f.label :title %>
+      <%= f.text_area :title, placeholder: "Ex: Brunch and Breweries" %> <br /><br />
+      <%= f.label :description %>
+      <%= f.text_area :description, placeholder: "Ex: Southern Road Trip 2021" %><br /><br />
     </div>
 
    
+    <div id="eatery_trips">
+       <%= f.fields_for :eatery_trips do |ff| %>
+         <h2>Select existing eatery.</h2>
+        
+         <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, prompt: true) %> <br /><br />
+
+         <%= ff.label :visit_date %>
+         <%= ff.date_field :visit_date %><br /><br />
+
+         <%= ff.label :review %>
+         <%= ff.text_area :review, placeholder: "Add notes here during or after your visit." %><br /><br />
+        <% end %>
+
+        <h2>Or create a new eatery to visit.</h2>
+
+        <div id="eatery_attributes">
+        <%= f.fields_for :eatery_trips do |ff| %>
+	        <%= ff.fields_for :eatery do |fff| %>
+	        <ul>
+            <%= fff.label :city %>
+            <%= fff.text_field :city, placeholder: "Ex: Savannah" %><br /><br />
+            <%= fff.label :state %>
+            <%= fff.text_field :state, placeholder: "Ex: GA" %><br /><br />
+            <%= fff.label :name %>
+            <%= fff.text_field :name, placeholder: "Cotton & Rye" %><br /><br />
+            <%= fff.label :about %>
+            <%= fff.text_field :about, placeholder: "Pro tip: Book a private dinner inside the original bank vault.", size: "50%" %><br /><br />
+            <%= fff.label :food_categories %>
+            <%= fff.text_field :food_categories, placeholder: "Southern food, dinner, dessert", size: "50%" %><br /><br />
+            <%= fff.label :dishes %>
+            <%= fff.text_field :dishes, placeholder: "Crispy chicken wings, peanut butter pie", size: "50%" %><br /><br />
+          </ul>
+        </div>
+	    <% end %>
+		    <%= ff.label :visit_date %>
+        <%= ff.date_field :visit_date %><br /><br />
+
+        <%= ff.label :review %>
+        <%= ff.text_area :review, placeholder: "Add notes here during or after your visit." %><br /><br />
+      <% end %>
+</div>
 
 <%= render "submit_button" %>
 <% end %> 
- <%# Select existing eateries: 
-    <%= trip_form.collection_check_boxes :eatery_ids, Eatery.all, :id, :name %> 
+ 

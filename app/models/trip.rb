@@ -5,8 +5,6 @@ class Trip < ApplicationRecord
 
     validates :title, :presence => true
     validates :description, :presence => true
-
-    accepts_nested_attributes_for :eatery_trips, allow_destroy: true
    
     def self.create_from_collection(trips) #for scraper
         u = User.find_by(:name => "Admin")
@@ -20,6 +18,19 @@ class Trip < ApplicationRecord
             end      
         end
     end
+
+    def eatery_trips_attributes=(attributes)
+      attributes.values.each do |attribute|
+
+        #if 
+
+      end
+
+
+    end
+
+
+  # params.require(:trip).permit(:id, :title, :description, :eatery_trips_attributes => [:id, :visit_date, :review, :eatery_id, :eatery_attributes => [:id, :city, :state, :name, :about, :food_categories, :dishes]])
 
 end
 
@@ -36,25 +47,3 @@ end
 
 
 
-
-  # def find_or_create_eateries
-    #    self.eatery_trips.each do |eatery_trip|
-    #     eatery_trip.eatery = Eatery.find_or_create_by(:name => eatery_trip.eatery.name)
-    #   end
-    # end
-
-
-    #   eateries_attributes = [
-        #        {:city => "",
-        #         :state => "",
-        #         :name => "",
-        #         :food_categories => "",
-        #         :dishes => ""
-        #       } 
-        #         {:city => "",
-        #         :state => "",
-        #         :name => "",
-        #         :food_categories => "",
-        #        :dishes => ""
-        #       } 
-        #     ]

@@ -5,7 +5,7 @@ class EateryTrip < ApplicationRecord
 
     validates_uniqueness_of :eatery_id, scope: [:trip_id]
 
-    accepts_nested_attributes_for :eatery, allow_destroy: true
+    # accepts_nested_attributes_for :eatery, allow_destroy: true
 
     scope :visited, -> { where("visit_date < ?",Time.now ) } 
 
@@ -20,5 +20,5 @@ class EateryTrip < ApplicationRecord
     def format_date
       self.visit_date.strftime("%B %d, %Y")
     end
-    
+
 end

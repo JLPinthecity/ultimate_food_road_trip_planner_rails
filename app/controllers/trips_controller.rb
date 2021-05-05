@@ -5,14 +5,14 @@ class TripsController < ApplicationController
     before_action :find_trip_by_id, only: [:show, :edit, :update]
 
     def new
-      @user = current_user
-      @trip = @user.trips.build
-      3.times { @trip.eatery_trips.build.build_eatery }
-       # 3.times { @trip.eatery_trips.build }
+      @trip = Trip.new
+      @eaterytrips = @trip.eatery_trips.build 
+      @eatery = @eaterytrips.build_eatery 
     end
    
     def create
-      @trip = @user.trips.new(trip_params)
+      @trip = Trip.new(trip_params)
+      @trip.user = current_user
       if @trip.save
         redirect_to user_trip_path(@user, @trip)
       else
@@ -52,19 +52,7 @@ class TripsController < ApplicationController
     private 
 
     def trip_params 
-        params.require(:trip).permit(:title, 
-                                     :description, 
-                                     eatery_ids:[], 
-                                     :eatery_trips_attributes => [:id, 
-                                                                  :visit_date, 
-                                                                  :review, 
-                                                                  :eatery_attributes => [:city, 
-                                                                                         :state, 
-                                                                                         :name, 
-                                                                                         :about, 
-                                                                                         :food_categories, 
-                                                                                         :dishes,          
-                                                                                         :id]])
+        params.require(:trip).permit(:id, :title, :description, :eatery_trips_attributes => [:id, :visit_date, :review, :eatery_id, :eatery_attributes => [:id, :city, :state, :name, :about, :food_categories, :dishes]])
     end
 
     def find_trip_by_id

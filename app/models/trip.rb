@@ -2,27 +2,26 @@ require 'pry'
 class Trip < ApplicationRecord
     has_many :eatery_trips                                         
     has_many :eateries, through: :eatery_trips, dependent: :destroy
-
     validates :title, :presence => true
     validates :description, :presence => true
    
-
-
-    def eatery_trips_attributes=(attributes)
-      attributes.values.each do |attribute|
-        #if attribute of eater_id is found/not blank, find create eatery_new with existing eatery
-        #else if att of eatery_id is not found/blank, create with custom eatery
-
-        
-
+  def eatery_trips_attributes=(attributes)
+    attributes.values.each do |attribute|
+      if attribute[:eatery_id].present? #eatery exists
+        eatery_trip = EateryTrip.new(attribute)
+        eatery_trip.trip = self 
+        eatery_trip.eatery = Eatery.find(attribute[:eatery_id].to_i)
+        self.eatery_trips << eatery_trip
+      else
+        eatery_trip = EateryTrip.new(attribute)
+        eatery_trip.trip = self 
+        eatery_trip.save
       end
-
-
     end
+  end
 
-    def self.create_from_collection(trips) #for scraper
-      u = User.find_by(:name => "Admin")
-      
+  def self.create_from_collection(trips) #for scraper
+    u = User.find_by(:name => "Admin")
       trips.each do |trip_hash|  
         binding.pry
         trip = u.trips.create(:title => trip_hash[:title], :description => trip_hash[:description])
@@ -32,11 +31,8 @@ class Trip < ApplicationRecord
           end      
       end
     end
-
-
 end
 
-  # params.require(:trip).permit(:id, :title, :description, :eatery_trips_attributes => [:id, :visit_date, :review, :eatery_id, :eatery_attributes => [:id, :city, :state, :name, :about, :food_categories, :dishes]])
 
 
 

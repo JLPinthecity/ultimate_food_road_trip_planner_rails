@@ -1,6 +1,6 @@
 class Eatery < ApplicationRecord
     has_many :eatery_trips                                         
-    has_many :trips, through: :eatery_trips, dependent: :destroy   
+    has_many :trips, through: :eatery_trips  
     
     # validates :city, :presence => true
     # validates :state, :presence => true

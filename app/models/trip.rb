@@ -7,10 +7,11 @@ class Trip < ApplicationRecord
    
   def eatery_trips_attributes=(attributes)
     attributes.values.each do |attribute|
-      if !attribute[:eatery_id].blank? || !attribute[:eatery_attributes].blank?
-        eatery_trip = EateryTrip.new(attribute)
-        eatery_trip.trip = self 
-        self.eatery_trips << eatery_trip 
+      if attribute[:eatery_id].present? || attribute[:eatery_attributes].present?
+        self.eatery_trips.build(attribute)
+        # eatery_trip = EateryTrip.new(attribute)
+        # eatery_trip.trip = self 
+        # self.eatery_trips << eatery_trip 
       end
     end
   end

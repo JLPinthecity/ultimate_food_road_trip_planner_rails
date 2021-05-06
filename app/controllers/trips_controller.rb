@@ -7,12 +7,11 @@ class TripsController < ApplicationController
     def new
       @user = current_user
       @trip = @user.trips.build
-      2.times { @eaterytrips = @trip.eatery_trips.build }
-      2.times { @eatery = @eaterytrips.build_eatery }
+      3.times { @trip.eatery_trips.build }
     end
    
     def create
-      @trip = Trip.new(trip_params)
+      @trip = @user.trips.build(trip_params)
       if @trip.save
         redirect_to user_trip_path(@user, @trip)
       else

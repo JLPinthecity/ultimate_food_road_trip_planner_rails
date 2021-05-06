@@ -5,22 +5,24 @@ class Trip < ApplicationRecord
     has_many :eateries, through: :eatery_trips, dependent: :destroy
     validates :title, :presence => true
     validates :description, :presence => true
-   
-  def eatery_trips_attributes=(attributes)
-    attributes.values.each do |attribute|
-      if attribute[:eatery_id].present? #eatery exists
-        eatery_trip = EateryTrip.new(attribute)
-        eatery_trip.trip = self 
-        eatery_trip.eatery = Eatery.find(attribute[:eatery_id].to_i)
-        self.eatery_trips << eatery_trip
-      else
-        eatery_trip = EateryTrip.new(attribute)
-        eatery_trip.trip = self 
-        eatery_trip.save
-      end
 
-    end
-  end
+    accepts_nested_attributes_for :eatery_trips
+   
+  # def eatery_trips_attributes=(attributes)
+  #   attributes.values.each do |attribute|
+  #     if attribute[:eatery_id].present? #eatery exists
+  #       eatery_trip = EateryTrip.new(attribute)
+  #       eatery_trip.trip = self 
+  #       eatery_trip.eatery = Eatery.find(attribute[:eatery_id].to_i)
+  #       self.eatery_trips << eatery_trip
+  #     else
+  #       eatery_trip = EateryTrip.new(attribute)
+  #       eatery_trip.trip = self 
+  #       eatery_trip.save
+  #     end
+
+  #   end
+  # end
   
   #self.eatery_trips.build(attribute) error moves to update with this line
 

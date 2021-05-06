@@ -9,16 +9,9 @@ class Trip < ApplicationRecord
   def eatery_trips_attributes=(attributes)
     attributes.values.each do |attribute|
       if attribute[:eatery_id].present? || attribute[:eatery_attributes].present?
-<<<<<<< HEAD
         eatery_trip = EateryTrip.new(attribute)
         eatery_trip.trip = self 
         self.eatery_trips << eatery_trip 
-=======
-        self.eatery_trips.build(attribute)
-        # eatery_trip = EateryTrip.new(attribute)
-        # eatery_trip.trip = self 
-        # self.eatery_trips << eatery_trip 
->>>>>>> dc0c3600a66dcc771d86b9e5de25c4d43e88fe23
       end
     end
   end

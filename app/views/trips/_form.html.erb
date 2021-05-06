@@ -20,7 +20,7 @@
        
         <h2>Select existing eatery:</h2>
       
-          <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, prompt: true) %> <br /><br />
+          <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, { include_blank: 'Select an eatery' }) %> <br /><br />
 
         <h2>Or create a new eatery to visit:</h2>
 

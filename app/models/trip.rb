@@ -8,12 +8,17 @@ class Trip < ApplicationRecord
    
   def eatery_trips_attributes=(attributes)
     attributes.values.each do |attribute|
-      if attribute[:eatery_id].present? || attribute[:eatery_attributes].present?
+      if attribute[:eatery_id].present? #eatery exists
         eatery_trip = EateryTrip.new(attribute)
         eatery_trip.trip = self 
-        self.eatery_trips << eatery_trip 
+        eatery_trip.eatery = Eatery.find(attribute[:eatery_id].to_i)
+        self.eatery_trips << eatery_trip
+      else
+        eatery_trip = EateryTrip.new(attribute)
+        eatery_trip.trip = self 
+        eatery_trip.save
       end
-      
+
     end
   end
   

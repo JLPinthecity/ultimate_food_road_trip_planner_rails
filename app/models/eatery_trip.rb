@@ -3,12 +3,17 @@ class EateryTrip < ApplicationRecord
   belongs_to :trip 
   belongs_to :eatery
 
-  scope :visited, -> { where("visit_date < ?",Time.now ) } 
+    validates_uniqueness_of :eatery_id, scope: [:trip_id]
 
-  def eatery_attributes=(attributes)
-    eatery = Eatery.find_or_create_by(attributes)
-    self.eatery_id = eatery.id
-  end
+    # accepts_nested_attributes_for :eatery, allow_destroy: true
+
+    scope :visited, -> { where("visit_date < ?",Time.now ) } 
+
+    def eatery_attributes=(attributes)
+      binding.pry
+      eatery = Eatery.find_or_create_by(attributes)
+      self.eatery_id = eatery.id
+    end
 
   def visit_date_exists
     self.visit_date.present?

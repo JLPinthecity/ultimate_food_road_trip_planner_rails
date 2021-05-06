@@ -14,6 +14,13 @@
     <div>
     <%= render "trip_fields", f: f %>
     </div>
+   
+    <div id="eatery_trips">
+      <%= f.fields_for :eatery_trips do |ff| %>
+       
+        <h2>Select existing eatery:</h2>
+      
+          <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, prompt: true) %> <br /><br />
 
     <div>
     <%= f.fields_for :eatery_trips do |ff| %>

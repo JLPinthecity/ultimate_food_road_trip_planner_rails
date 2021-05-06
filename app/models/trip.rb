@@ -13,6 +13,7 @@ class Trip < ApplicationRecord
         eatery_trip.trip = self 
         self.eatery_trips << eatery_trip 
       end
+      
     end
   end
   

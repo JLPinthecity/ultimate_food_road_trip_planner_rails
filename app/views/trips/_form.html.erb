@@ -10,35 +10,28 @@
           <% end %>
       </div>
     <% end %>
-
-    <div id="trip">
-      <%= render "trip_fields", f: f %>
+     
+    <div>
+    <%= render "trip_fields", f: f %>
     </div>
 
+    <div>
+    <%= f.fields_for :eatery_trips do |ff| %>
+ 
+      <h2>Select existing eatery:</h2>
+      <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, { include_blank: 'Select an eatery' }) %> <br /><br />
 
-    <div id="eatery_trips">
-      <%= f.fields_for :eatery_trips do |ff| %>
-      <%= ff.label :visit_date %>
-      <%= ff.date_field :visit_date %><br /><br />
-      <%= ff.label :review %>
-      <%= ff.text_area :review, placeholder: "Add notes here." %><br /><br />
+      <h2>Or create a new eatery to visit:</h2>
+	    <%= ff.fields_for :eatery do |fff| %>
+        <%= render "eatery_fields", fff: fff %>
+	    <% end %>
+
+      <%= render "eatery_trips_fields", ff: ff %>
        
-        <h2>Select existing eatery:</h2>
-      
-          <%= ff.collection_select(:eatery_id, Eatery.all, :id, :name, { include_blank: 'Select an eatery' }) %> <br /><br />
-
-        <h2>Or create a new eatery to visit:</h2>
-
-        <div id="eatery">
-	        <%= ff.fields_for :eatery do |fff| %>
-	          <ul>
-              <%= render "eatery_fields", fff: fff %>
-            </ul>
-	        <% end %>
-        </div>
-
+    <% end %> 
     </div>
-
+ 
+      
 <%= render "submit_button" %>
 <% end %> 
  
